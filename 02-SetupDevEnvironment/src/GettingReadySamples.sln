@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicChat-01MEAI", "BasicCh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicChat-03Ollama", "BasicChat-03Ollama\BasicChat-03Ollama.csproj", "{9E9C9E85-02AD-42B5-BC4E-C69AF390BA46}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mini-chat", "..\..\06-Winforms\mini-chat\mini-chat.csproj", "{EF95B264-6382-4FD3-8600-F0FB80C3975D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +23,15 @@ Global
 		{9E9C9E85-02AD-42B5-BC4E-C69AF390BA46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E9C9E85-02AD-42B5-BC4E-C69AF390BA46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E9C9E85-02AD-42B5-BC4E-C69AF390BA46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF95B264-6382-4FD3-8600-F0FB80C3975D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF95B264-6382-4FD3-8600-F0FB80C3975D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF95B264-6382-4FD3-8600-F0FB80C3975D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF95B264-6382-4FD3-8600-F0FB80C3975D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D5016561-360A-476D-B4D8-919D1472A13C}
 	EndGlobalSection
 EndGlobal
