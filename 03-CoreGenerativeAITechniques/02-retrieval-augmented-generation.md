@@ -35,9 +35,16 @@ You may have heard of vector databases. These are databases that store data in a
 
 We'll use the Microsoft.Extension.AI along with the [Microsoft.Extensions.VectorData](https://www.nuget.org/packages/Microsoft.Extensions.VectorData.Abstractions/) and [Microsoft.SemanticKernel.Connectors.InMemory](https://www.nuget.org/packages/Microsoft.SemanticKernel.Connectors.InMemory) libraries to implement RAG below.
 
-> 🧑‍💻**Sample code:** You can follow along with the [sample code here](../03-CoreGenerativeAITechniques/src/RAGSimple-02MEAIVectorsMemory/).
-> 
+> 🧑‍💻**Sample code:** You can follow along with the [sample code here](./src/RAGSimple-02MEAIVectorsMemory/).
+>
 > You can also see how to implement a RAG app [using Semantic Kernel by itself in our sample source code here](./src/RAGSimple-01SK/).
+>
+> We have additional RAG examples for different vector stores and models:
+>
+> - [RAGSimple-03MEAIVectorsAISearch](./src/RAGSimple-03MEAIVectorsAISearch/) - Using Azure AI Search as a vector store
+> - [RAGSimple-04MEAIVectorsQdrant](./src/RAGSimple-04MEAIVectorsQdrant/) - Using Qdrant as a vector store
+> - [RAGSimple-10SKOllama](./src/RAGSimple-10SKOllama/) - Using Semantic Kernel with Ollama
+> - [RAGSimple-15Ollama-DeepSeekR1](./src/RAGSimple-15Ollama-DeepSeekR1/) - Using Ollama with DeepSeek-R1 model
 
 ### Populating the knowledge store
 
@@ -46,55 +53,45 @@ We'll use the Microsoft.Extension.AI along with the [Microsoft.Extensions.Vector
     ```csharp
     public class Movie
     {
-        [VectorStoreRecordKey]
+        [VectorStoreKey]
         public int Key { get; set; }
 
-        [VectorStoreRecordData]
+        [VectorStoreData]
         public string Title { get; set; }
 
-        [VectorStoreRecordData]
+        [VectorStoreData]
         public string Description { get; set; }
 
-        [VectorStoreRecordVector(384, DistanceFunction.CosineSimilarity)]
+        [VectorStoreVector(384, DistanceFunction.CosineSimilarity)]
         public ReadOnlyMemory<float> Vector { get; set; }
     }
     ```
 
-    Using the attributes like `[VectorStoreRecordKey]` makes it easier for the vector store implementations to map POCO objects to their underlying data models.
+    Using the attributes like `[VectorStoreKey]` makes it easier for the vector store implementations to map POCO objects to their underlying data models.
 
 2. Of course we're going to need that knowledge data populated. Create a list of `Movie` objects, and create an `InMemoryVectorStore` that will have a collection of movies.
 
     ```csharp
-    var movieData = new List<Movie>
-    {
-        new Movie { Key = 1, Title = "The Matrix", Description = "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers." },
-        new Movie { Key = 2, Title = "Inception", Description = "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O." },
-        new Movie { Key = 3, Title = "Interstellar", Description = "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival." }
-    };
-
     var vectorStore = new InMemoryVectorStore();
-    var movies = vectorStore.GetCollection<int, Movie>("movies");
-    await movies.CreateCollectionIfNotExistsAsync();
+
+    // get movie list
+    var movies = vectorStore.GetCollection<int, MovieVector<int>>("movies");
+    await movies.EnsureCollectionExistsAsync();
+    var movieData = MovieFactory<int>.GetMovieVectorList();
 
     ```
 
 3. Our next task then is to convert our knowledge store (the `movieData` object) into embeddings and then store them into the in-memory vector store. When we create the embeddings we'll use a different model - an embeddings model instead of a language model.
 
     ```csharp
-    var endpoint = new Uri("https://models.inference.ai.azure.com");
+    var endpoint = new Uri("https://models.github.ai/inference");
     var modelId = "text-embedding-3-small";
-    var credential = new AzureKeyCredential(githubToken); // githubToken is retrieved from the environment variables
-
+    // get embeddings generator and generate embeddings for movies
     IEmbeddingGenerator<string, Embedding<float>> generator =
-            new EmbeddingsClient(endpoint, credential)
-        .AsEmbeddingGenerator(modelId);
-
+        new OllamaEmbeddingGenerator(new Uri("http://localhost:11434/"), "all-minilm");
     foreach (var movie in movieData)
     {
-        // generate the embedding vector for the movie description
-        movie.Vector = await generator.GenerateEmbeddingVectorAsync(movie.Description);
-        
-        // add the overall movie to the in-memory vector store's movie collection
+        movie.Vector = await generator.GenerateVectorAsync(movie.Description);
         await movies.UpsertAsync(movie);
     }
     ```
@@ -109,20 +106,14 @@ We'll use the Microsoft.Extension.AI along with the [Microsoft.Extensions.Vector
 
     ```csharp
     // generate the embedding vector for the user's prompt
-    var query = "I want to see family friendly movie";
-    var queryEmbedding = await generator.GenerateEmbeddingVectorAsync(query);
-
-    var searchOptions = new VectorSearchOptions
-    {
-        Top = 1,
-        VectorPropertyName = "Vector"
-    };
+    var query = "A family friendly movie that includes ogres and dragons";
+    var queryEmbedding = await generator.GenerateVectorAsync(query);
 
     // search the knowledge store based on the user's prompt
-    var searchResults = await movies.VectorizedSearchAsync(queryEmbedding, searchOptions);
+    var results = movies.SearchAsync(queryEmbedding, 2, new VectorSearchOptions<MovieVector<int>>());
 
     // let's see the results just so we know what they look like
-    await foreach (var result in searchResults.Results)
+    await foreach (var result in results.Results)
     {
         Console.WriteLine($"Title: {result.Record.Title}");
         Console.WriteLine($"Description: {result.Record.Description}");
@@ -141,7 +132,7 @@ So we could do something like the following while looping through the results of
 
 ```csharp
 
-// assuming chatClient is instatiated as before to a language model
+// assuming chatClient is instantiated as before to a language model
 // assuming the vector search is done as above
 // assuming List<ChatMessage> conversation object is already instantiated and has a system prompt
 
@@ -162,7 +153,7 @@ var response = await chatClient.GetResponseAsync(conversation);
 conversation.Add(new ChatMessage(ChatRole.Assistant, response.Message));
 
 //display the conversation
-Console.WriteLine($"Bot:> {response.Message.Text});
+Console.WriteLine($"Bot:> {response.Message.Text}");
 ```
 
 > 🙋 **Need help?**: If you encounter any issues, [open an issue in the repository](https://github.com/microsoft/Generative-AI-for-beginners-dotnet/issues/new).

@@ -1,6 +1,6 @@
 # チャットアプリの基本
 
-このレッスンでは、.NETを使用して言語モデルの補完機能や関数を活用したチャットアプリケーションの基本を探ります。また、Semantic KernelやMicrosoft Extensions AI (MEAI) を使用してチャットボットを作成する方法についても学びます。さらに、Semantic Kernelを使用してプラグイン（ユーザーの入力に基づいてチャットボットが呼び出す機能）を作成する方法も紹介します。
+このレッスンでは、.NETを使用して言語モデルの補完機能や関数を活用したチャットアプリケーションの基本を探ります。また、セマンティック カーネルやMicrosoft Extensions AI (MEAI) を使用してチャットボットを作成する方法についても学びます。さらに、セマンティック カーネルを使用してプラグイン（ユーザーの入力に基づいてチャットボットが呼び出す機能）を作成する方法も紹介します。
 
 ---
 
@@ -24,7 +24,7 @@ _⬆️画像をクリックして動画を見る⬆️_
 
 // this example illustrates using a model hosted on GitHub Models
 IChatClient client = new ChatCompletionsClient(
-    endpoint: new Uri("https://models.inference.ai.azure.com"),
+    endpoint: new Uri("https://models.github.ai/inference"),
     new AzureKeyCredential(githubToken)) // githubToken is retrieved from the environment variables
     .AsChatClient("gpt-4o-mini");
 
@@ -100,7 +100,7 @@ while (true)
 
 ```
 
-> 🗒️**Note:** これはSemantic Kernelでも実現可能です。[コードはこちらで確認してください](../../../03-CoreGenerativeAITechniques/src/BasicChat-02SK)。
+> 🗒️**Note:** これはセマンティック カーネルでも実現可能です。[コードはこちらで確認してください](../../../03-CoreGenerativeAITechniques/src/BasicChat-02SK)。
 
 > 🙋 **Need help?**: 問題が発生した場合は、[リポジトリでIssueを開いてください](https://github.com/microsoft/Generative-AI-for-beginners-dotnet/issues/new)。
 
@@ -149,7 +149,7 @@ MEAIを使用して関数を呼び出すには、いくつかの設定手順が�
 
     ```csharp
     IChatClient client = new ChatCompletionsClient(
-        endpoint: new Uri("https://models.inference.ai.azure.com"),
+        endpoint: new Uri("https://models.github.ai/inference"),
         new AzureKeyCredential(githubToken)) // githubToken is retrieved from the environment variables
     .AsChatClient("gpt-4o-mini")
     .AsBuilder()

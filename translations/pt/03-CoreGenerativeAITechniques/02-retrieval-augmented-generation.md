@@ -46,21 +46,21 @@ Usaremos o Microsoft.Extension.AI junto com as bibliotecas [Microsoft.Extensions
     ```csharp
     public class Movie
     {
-        [VectorStoreRecordKey]
+        [VectorStoreKey]
         public int Key { get; set; }
 
-        [VectorStoreRecordData]
+        [VectorStoreData]
         public string Title { get; set; }
 
-        [VectorStoreRecordData]
+        [VectorStoreData]
         public string Description { get; set; }
 
-        [VectorStoreRecordVector(384, DistanceFunction.CosineSimilarity)]
+        [VectorStoreVector(384, DistanceFunction.CosineSimilarity)]
         public ReadOnlyMemory<float> Vector { get; set; }
     }
     ```
 
-    Usando os atributos como `[VectorStoreRecordKey]` makes it easier for the vector store implementations to map POCO objects to their underlying data models.
+    Usando os atributos como `[VectorStoreKey]` makes it easier for the vector store implementations to map POCO objects to their underlying data models.
 
 2. Of course we're going to need that knowledge data populated. Create a list of `Movie` objects, and create an `InMemoryVectorStore`, que terá uma coleção de filmes.
 
@@ -81,7 +81,7 @@ Usaremos o Microsoft.Extension.AI junto com as bibliotecas [Microsoft.Extensions
 3. Nossa próxima tarefa é converter nosso repositório de conhecimento (o objeto `movieData`) em embeddings e armazená-los no repositório vetorial em memória. Ao criar os embeddings, usaremos um modelo diferente – um modelo de embeddings em vez de um modelo de linguagem.
 
     ```csharp
-    var endpoint = new Uri("https://models.inference.ai.azure.com");
+    var endpoint = new Uri("https://models.github.ai/inference");
     var modelId = "text-embedding-3-small";
     var credential = new AzureKeyCredential(githubToken); // githubToken is retrieved from the environment variables
 

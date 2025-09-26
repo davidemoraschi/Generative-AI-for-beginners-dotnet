@@ -12,9 +12,9 @@ if(string.IsNullOrEmpty(githubToken))
 }
 
 IChatClient client = new ChatCompletionsClient(
-        endpoint: new Uri("https://models.inference.ai.azure.com"),
+        endpoint: new Uri("https://models.github.ai/inference"),
         new AzureKeyCredential(githubToken))
-        .AsChatClient("Phi-3.5-MoE-instruct");
+        .AsIChatClient("Phi-3.5-MoE-instruct");
 
 // here we're building the prompt
 StringBuilder prompt = new StringBuilder();
@@ -28,4 +28,4 @@ prompt.AppendLine("I found this product based on the other reviews. It worked fo
 var response = await client.GetResponseAsync(prompt.ToString());
 
 // display the response
-Console.WriteLine(response.Message);
+Console.WriteLine(response.Text);

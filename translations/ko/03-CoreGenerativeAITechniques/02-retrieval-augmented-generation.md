@@ -46,21 +46,21 @@ RAG 아키텍처에는 두 가지 주요 단계가 있습니다: **검색(Retrie
     ```csharp
     public class Movie
     {
-        [VectorStoreRecordKey]
+        [VectorStoreKey]
         public int Key { get; set; }
 
-        [VectorStoreRecordData]
+        [VectorStoreData]
         public string Title { get; set; }
 
-        [VectorStoreRecordData]
+        [VectorStoreData]
         public string Description { get; set; }
 
-        [VectorStoreRecordVector(384, DistanceFunction.CosineSimilarity)]
+        [VectorStoreVector(384, DistanceFunction.CosineSimilarity)]
         public ReadOnlyMemory<float> Vector { get; set; }
     }
     ```
 
-    `[VectorStoreRecordKey]` makes it easier for the vector store implementations to map POCO objects to their underlying data models.
+    `[VectorStoreKey]` makes it easier for the vector store implementations to map POCO objects to their underlying data models.
 
 2. Of course we're going to need that knowledge data populated. Create a list of `Movie` objects, and create an `InMemoryVectorStore`와 같은 속성을 사용하여 영화 컬렉션을 포함한 인메모리 벡터 저장소를 구성합니다.
 
@@ -81,7 +81,7 @@ RAG 아키텍처에는 두 가지 주요 단계가 있습니다: **검색(Retrie
 3. 다음으로, 우리의 지식 저장소(`movieData` 객체)를 임베딩으로 변환한 후, 이를 인메모리 벡터 저장소에 저장해야 합니다. 임베딩을 생성할 때는 언어 모델 대신 임베딩 모델을 사용합니다.
 
     ```csharp
-    var endpoint = new Uri("https://models.inference.ai.azure.com");
+    var endpoint = new Uri("https://models.github.ai/inference");
     var modelId = "text-embedding-3-small";
     var credential = new AzureKeyCredential(githubToken); // githubToken is retrieved from the environment variables
 

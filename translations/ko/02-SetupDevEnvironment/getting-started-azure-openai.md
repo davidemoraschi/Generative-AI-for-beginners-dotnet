@@ -57,7 +57,7 @@ Azure AI Foundry 모델을 사용하려면, Azure AI Foundry 포털에서 허브
 1. 포크한 리포지토리의 **Settings** 탭으로 이동한 다음, 왼쪽 메뉴에서 **Secrets and variables**를 확장하고 **Codespaces**를 선택합니다.  
 
     ![새 Codespace secret 추가](../../../translated_images/codespaces-secret.0e168026d0078356489f51ca61b195603283511c73bb805b056619f994652f7c.ko.jpeg)  
-1. Secret 이름을 **AZURE_AI_KEY**로 지정합니다.  
+1. Secret 이름을 **AZURE_AI_SECRET**로 지정합니다.  
 1. Azure AI Foundry 포털에서 복사한 API 키를 **Secret** 필드에 붙여넣습니다.  
 
 ## GitHub Codespace 생성하기
@@ -97,12 +97,12 @@ Azure AI Foundry 모델을 사용하려면, Azure AI Foundry 포털에서 허브
 
     ```bash
     dotnet add package Azure.AI.OpenAI
-    dotnet add package Microsoft.Extensions.AI.OpenAI --version 9.1.0-preview.1.25064.3
+    dotnet add package Microsoft.Extensions.AI.OpenAI --version 9.5.0-preview.1.25265.7
     ```
 
 [Azure.AI.OpenAI에 대한 추가 정보](https://www.nuget.org/packages/Azure.AI.OpenAI/2.1.0#show-readme-container).
 
-1. `/workspaces/Generative-AI-for-beginners-dotnet/02-SettingUp.NETDev/src/BasicChat-01MEAI/Program.cs` 파일을 엽니다.
+1. `/workspaces/Generative-AI-for-beginners-dotnet/02-SetupDevEnvironment/src/BasicChat-01MEAI/Program.cs` 파일을 엽니다.
 
     파일 상단에 다음 using 문을 추가하세요:
 
@@ -156,7 +156,7 @@ Azure AI Foundry 모델을 사용하려면, Azure AI Foundry 포털에서 허브
 
 - [Azure AI Foundry 문서](https://learn.microsoft.com/azure/ai-services/)  
 - [GitHub Codespaces 사용법](https://docs.github.com/en/codespaces/getting-started)  
-- [Azure AI Foundry에서 모델 배포하기](https://learn.microsoft.com/azure/ai-services/deploy/)  
+- [Azure AI Foundry에서 모델 배포하기](https://learn.microsoft.com/azure/ai-foundry/how-to/deploy-models-openai)  
 - [Azure.AI.OpenAI NuGet 패키지](https://www.nuget.org/packages/Azure.AI.OpenAI)
 
 ## 다음 단계

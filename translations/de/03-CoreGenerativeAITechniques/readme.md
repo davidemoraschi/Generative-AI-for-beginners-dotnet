@@ -11,14 +11,18 @@ In dieser Lektion lernst du praktische Fähigkeiten zum Erstellen von KI-gestüt
 - 🔎 Retrieval-Augmented Generation (RAG)  
 - 👀 Visionsbasierte KI-Ansätze  
 - 🔊 Audioerstellung und Transkription  
+- 🖼️ Bildgenerierung mit DALL-E  
 - 🧩 Agenten & Assistenten  
+- 💻 Lokales Ausführen von Modellen mit AI Toolkit und Docker  
 
 Für diese Lektion unterteilen wir den Inhalt in die folgenden Abschnitte:
 
 - [Chat, LLM-Abschlüsse und Funktionsaufrufe](./01-lm-completions-functions.md)  
 - [Retrieval-Augmented Generation (RAG)](./02-retrieval-augmented-generation.md)  
 - [Vision- und Audio-KI-Anwendungen](./03-vision-audio.md)  
+- [Bildgenerierung mit Azure OpenAI](./05-ImageGenerationOpenAI.md)  
 - [Agenten](04-agents.md)  
+- [Lokales Ausführen von Modellen mit AI Toolkit, Docker und Foundry Local](../../../03-CoreGenerativeAITechniques/06-LocalModelRunners.md)  
 
 Wir beginnen mit Sprachmodell-Abschlüssen, Chat-Anwendungen und der Implementierung von Funktionen mit Sprachmodellen in .NET.
 

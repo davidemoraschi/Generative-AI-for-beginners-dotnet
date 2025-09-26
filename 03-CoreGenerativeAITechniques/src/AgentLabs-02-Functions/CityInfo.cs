@@ -1,4 +1,5 @@
-﻿using Azure.AI.Projects;
+﻿using Azure.AI.Agents.Persistent;
+using Azure.AI.Projects;
 using System.Text.Json;
 
 namespace AgentLabs_02;
@@ -44,7 +45,7 @@ public static class CityInfo
     };
     public static FunctionToolDefinition getParksAtLocationTool = new(
 name: "getParksAtLocation",
-description: "Gets informations about parks for a city, e.g. 'Seattle' or 'Toronto'.",
+description: "Gets information about parks for a city, e.g. 'Seattle' or 'Toronto'.",
 parameters: BinaryData.FromObjectAsJson(
     new
     {

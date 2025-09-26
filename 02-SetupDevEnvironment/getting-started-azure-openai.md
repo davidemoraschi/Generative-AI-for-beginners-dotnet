@@ -57,7 +57,7 @@ To be secure, let's add the API key you just created to your Codespace's secrets
 1. Go to the **Settings** tab of your forked repository then expand **Secrets and variables** on the left-hand menu and select **Codespaces**.
 
     ![Adding a new Codespace secret](./images/codespaces-secret.jpeg)
-1. Name your secret **AZURE_AI_KEY**.
+1. Name your secret **AZURE_AI_SECRET**.
 1. Paste the API key you copied from the Azure AI Foundry portal into the **Secret** field.
 
 ## Creating a GitHub Codespace
@@ -97,12 +97,12 @@ Now let’s update the code to use the newly deployed model. First we'll need to
 
     ```bash
     dotnet add package Azure.AI.OpenAI --version 2.2.0-beta.2
-    dotnet add package Microsoft.Extensions.AI.OpenAI --version 9.3.0-preview.1.25114.11
+    dotnet add package Microsoft.Extensions.AI.OpenAI --version 9.5.0-preview.1.25265.7
     ```
 
 [More information about Azure.AI.OpenAI](https://www.nuget.org/packages/Azure.AI.OpenAI/2.2.0-beta.2).
 
-1. Open `/workspaces/Generative-AI-for-beginners-dotnet/02-SettingUp.NETDev/src/BasicChat-01MEAI/Program.cs`.
+1. Open `/workspaces/Generative-AI-for-beginners-dotnet/02-SetupDevEnvironment/src/BasicChat-01MEAI/Program.cs`.
 
     Add the following using statements at the top of the file:
 
@@ -128,7 +128,8 @@ Now let’s update the code to use the newly deployed model. First we'll need to
     IChatClient client = new AzureOpenAIClient(
         endpoint,
         apiKey)
-    .AsChatClient(deploymentName);
+    .GetChatClient(deploymentName)
+    .AsIChatClient();
     ```
 
 1. Run the following command in the terminal:
@@ -157,7 +158,7 @@ In this lesson, you learned how to set up your development environment for the r
 
 - [Azure AI Foundry Documentation](https://learn.microsoft.com/azure/ai-services/)
 - [Working with GitHub Codespaces](https://docs.github.com/en/codespaces/getting-started)
-- [How to Deploy Models in Azure AI Foundry](https://learn.microsoft.com/azure/ai-services/deploy/)
+- [How to Deploy Models in Azure AI Foundry](https://learn.microsoft.com/azure/ai-foundry/how-to/deploy-models-openai)
 - [Azure.AI.OpenAI NuGet Package](https://www.nuget.org/packages/Azure.AI.OpenAI)
 
 ## Next Steps

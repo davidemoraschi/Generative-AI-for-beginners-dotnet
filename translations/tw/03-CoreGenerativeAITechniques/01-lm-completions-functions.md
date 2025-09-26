@@ -24,7 +24,7 @@ _⬆️點擊圖片觀看影片⬆️_
 
 // this example illustrates using a model hosted on GitHub Models
 IChatClient client = new ChatCompletionsClient(
-    endpoint: new Uri("https://models.inference.ai.azure.com"),
+    endpoint: new Uri("https://models.github.ai/inference"),
     new AzureKeyCredential(githubToken)) // githubToken is retrieved from the environment variables
     .AsChatClient("gpt-4o-mini");
 
@@ -149,7 +149,7 @@ _⬆️點擊圖片觀看影片⬆️_
 
     ```csharp
     IChatClient client = new ChatCompletionsClient(
-        endpoint: new Uri("https://models.inference.ai.azure.com"),
+        endpoint: new Uri("https://models.github.ai/inference"),
         new AzureKeyCredential(githubToken)) // githubToken is retrieved from the environment variables
     .AsChatClient("gpt-4o-mini")
     .AsBuilder()

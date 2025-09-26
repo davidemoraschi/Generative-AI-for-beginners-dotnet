@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.AI;
-using Microsoft.Extensions.VectorData;
 using Azure;
 using Azure.Search.Documents.Indexes;
 using Microsoft.SemanticKernel.Connectors.AzureAISearch;
@@ -12,7 +11,7 @@ var vectorStore = new AzureAISearchVectorStore(searchIndexClient: client);
 
 // get movie list
 var movies = vectorStore.GetCollection<string, MovieVector<string>>("movies");
-await movies.CreateCollectionIfNotExistsAsync();
+await movies.EnsureCollectionExistsAsync();
 var movieData = MovieFactory<string>.GetMovieVectorList();
 
 // get embeddings generator and generate embeddings for movies
@@ -20,7 +19,7 @@ IEmbeddingGenerator<string, Embedding<float>> generator =
     new OllamaEmbeddingGenerator(new Uri("http://localhost:11434/"), "all-minilm");
 foreach (var movie in movieData)
 {
-    movie.Vector = await generator.GenerateEmbeddingVectorAsync(movie.Description);
+    movie.Vector = await generator.GenerateVectorAsync(movie.Description);
     await movies.UpsertAsync(movie);
 }
 
@@ -43,21 +42,15 @@ async Task SearchMovieAsync(string question, int resultCount)
     Console.WriteLine();
 
     // perform the search
-    var queryEmbedding = await generator.GenerateEmbeddingVectorAsync(question);
+    var queryEmbedding = await generator.GenerateVectorAsync(question);
 
-    var searchOptions = new VectorSearchOptions()
-    {
-        Top = resultCount,
-        VectorPropertyName = "Vector"
-    };
 
-    var results = await movies.VectorizedSearchAsync(queryEmbedding, searchOptions);
-    await foreach (var result in results.Results)
+    await foreach (var resultItem in movies.SearchAsync(queryEmbedding, top: 2))
     {
-        Console.WriteLine($">> Title: {result.Record.Title}");
-        Console.WriteLine($">> Year: {result.Record.Year}");
-        Console.WriteLine($">> Description: {result.Record.Description}");
-        Console.WriteLine($">> Score: {result.Score}");
+        Console.WriteLine($">> Title: {resultItem.Record.Title}");
+        Console.WriteLine($">> Year: {resultItem.Record.Year}");
+        Console.WriteLine($">> Description: {resultItem.Record.Description}");
+        Console.WriteLine($">> Score: {resultItem.Score}");
         Console.WriteLine();
     }
     Console.WriteLine($"====================================================");

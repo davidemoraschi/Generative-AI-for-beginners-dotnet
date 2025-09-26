@@ -126,7 +126,7 @@ Codespace が完全にロードされ、設定が完了したら、サンプル�
     ...
     ```
 
-> 🙋 **ヘルプが必要？**: 何か問題が発生しましたか？[問題を報告](https://github.com/microsoft/Generative-AI-for-beginners-dotnet/issues/new?template=Blank+issue)してサポートを受けてください。
+> 🙋 **サポートが必要ですか？**: 何か問題が発生しましたか？[問題を報告](https://github.com/microsoft/Generative-AI-for-beginners-dotnet/issues/new?template=Blank+issue)してサポートを受けてください。
 
 ## まとめ
 
@@ -144,7 +144,7 @@ Codespace が完全にロードされ、設定が完了したら、サンプル�
 
 次は、最初の AI アプリケーションを作成する方法を学びます！ 🚀
 
-👉 [Core Generative AI Techniques](../03-CoreGenerativeAITechniques/readme.md)
+👉 [生成 AI のコア技術](../03-CoreGenerativeAITechniques/readme.md)
 
 **免責事項**:  
 この文書は、機械ベースのAI翻訳サービスを使用して翻訳されています。正確さを追求しておりますが、自動翻訳には誤りや不正確な箇所が含まれる可能性があります。元の言語で作成された原文が正式な情報源と見なされるべきです。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用によって生じた誤解や解釈の誤りについて、当社は一切の責任を負いません。

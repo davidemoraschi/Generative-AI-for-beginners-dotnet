@@ -46,21 +46,21 @@ RAG 架构主要分为两个阶段：**检索** 和 **生成**。
     ```csharp
     public class Movie
     {
-        [VectorStoreRecordKey]
+        [VectorStoreKey]
         public int Key { get; set; }
 
-        [VectorStoreRecordData]
+        [VectorStoreData]
         public string Title { get; set; }
 
-        [VectorStoreRecordData]
+        [VectorStoreData]
         public string Description { get; set; }
 
-        [VectorStoreRecordVector(384, DistanceFunction.CosineSimilarity)]
+        [VectorStoreVector(384, DistanceFunction.CosineSimilarity)]
         public ReadOnlyMemory<float> Vector { get; set; }
     }
     ```
 
-    使用类似 `[VectorStoreRecordKey]` makes it easier for the vector store implementations to map POCO objects to their underlying data models.
+    使用类似 `[VectorStoreKey]` makes it easier for the vector store implementations to map POCO objects to their underlying data models.
 
 2. Of course we're going to need that knowledge data populated. Create a list of `Movie` objects, and create an `InMemoryVectorStore` 的属性，这将包含一组电影数据。
 
@@ -81,7 +81,7 @@ RAG 架构主要分为两个阶段：**检索** 和 **生成**。
 3. 接下来，我们需要将知识库 (`movieData` 对象) 转换为嵌入，并将它们存储到内存向量存储中。当我们创建嵌入时，将使用不同的模型——一个嵌入模型，而不是语言模型。
 
     ```csharp
-    var endpoint = new Uri("https://models.inference.ai.azure.com");
+    var endpoint = new Uri("https://models.github.ai/inference");
     var modelId = "text-embedding-3-small";
     var credential = new AzureKeyCredential(githubToken); // githubToken is retrieved from the environment variables
 

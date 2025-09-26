@@ -2,45 +2,34 @@
 using Azure.Identity;
 using Microsoft.Extensions.Configuration;
 using OpenAI;
-using OpenAI.RealtimeConversation;
+using OpenAI.Realtime;
 using System.ClientModel;
 
-#pragma warning disable OPENAI002
+#pragma warning disable AOAI001, OPENAI002 
 
 public class Program
 {
+    private static string finishedConversationToolName = "user_wants_to_finish_conversation"; 
+
     public static async Task Main(string[] args)
     {
         // First, we create a client according to configured environment variables (see end of file) and then start
         // a new conversation session.
-        RealtimeConversationClient client = GetConfiguredClient();
-        using RealtimeConversationSession session = await client.StartConversationSessionAsync();
-
-        // We'll add a simple function tool that enables the model to interpret user input to figure out when it
-        // might be a good time to stop the interaction.
-        ConversationFunctionTool finishConversationTool = new()
-        {
-            Name = "user_wants_to_finish_conversation",
-            Description = "Invoked when the user says goodbye, expresses being finished, or otherwise seems to want to stop the interaction.",
-            Parameters = BinaryData.FromString("{}")
-        };
+        RealtimeClient client = GetConfiguredClient();
+        var realtimeModel = GetModel();
+        using RealtimeSession session = await client.StartConversationSessionAsync(realtimeModel);
 
         // Now we configure the session using the tool we created along with transcription options that enable input
         // audio transcription with whisper.
-        await session.ConfigureSessionAsync(new ConversationSessionOptions()
-        {
-            Tools = { finishConversationTool },
-            InputTranscriptionOptions = new()
-            {
-                Model = "whisper-1",
-            },
-        });
+        var prompt = "you are a useful chat that helps the user.";
+        ConversationSessionOptions conversationSessionOptions = CreateConversationSessionOptions(prompt);
+        await session.ConfigureConversationSessionAsync(conversationSessionOptions);
 
         // For convenience, we'll proactively start playback to the speakers now. Nothing will play until it's enqueued.
         SpeakerOutput speakerOutput = new();
 
         // With the session configured, we start processing commands received from the service.
-        await foreach (ConversationUpdate update in session.ReceiveUpdatesAsync())
+        await foreach (RealtimeUpdate update in session.ReceiveUpdatesAsync())
         {
             // session.created is the very first command on a session and lets us know that connection was successful.
             if (update is ConversationSessionStartedUpdate)
@@ -61,7 +50,7 @@ public class Program
 
             // input_audio_buffer.speech_started tells us that the beginning of speech was detected in the input audio
             // we're sending from the microphone.
-            if (update is ConversationInputSpeechStartedUpdate speechStartedUpdate)
+            if (update is InputAudioSpeechStartedUpdate speechStartedUpdate)
             {
                 Console.WriteLine($" <<< Start of speech detected @ {speechStartedUpdate.AudioStartTime}");
                 // Like any good listener, we can use the cue that the user started speaking as a hint that the app
@@ -72,7 +61,7 @@ public class Program
 
             // input_audio_buffer.speech_stopped tells us that the end of speech was detected in the input audio sent
             // from the microphone. It'll automatically tell the model to start generating a response to reply back.
-            if (update is ConversationInputSpeechFinishedUpdate speechFinishedUpdate)
+            if (update is InputAudioSpeechFinishedUpdate speechFinishedUpdate)
             {
                 Console.WriteLine($" <<< End of speech detected @ {speechFinishedUpdate.AudioEndTime}");
             }
@@ -80,14 +69,14 @@ public class Program
             // conversation.item.input_audio_transcription.completed will only arrive if input transcription was
             // configured for the session. It provides a written representation of what the user said, which can
             // provide good feedback about what the model will use to respond.
-            if (update is ConversationInputTranscriptionFinishedUpdate transcriptionFinishedUpdate)
+            if (update is InputAudioTranscriptionFinishedUpdate transcriptionFinishedUpdate)
             {
                 Console.WriteLine($" >>> USER: {transcriptionFinishedUpdate.Transcript}");
             }
 
             // Item streaming delta updates provide a combined view into incremental item data including output
             // the audio response transcript, function arguments, and audio data.
-            if (update is ConversationItemStreamingPartDeltaUpdate deltaUpdate)
+            if (update is OutputDeltaUpdate deltaUpdate)
             {
                 Console.Write(deltaUpdate.AudioTranscript);
                 Console.Write(deltaUpdate.Text);
@@ -96,10 +85,10 @@ public class Program
 
             // response.output_item.done tells us that a model-generated item with streaming content is completed.
             // That's a good signal to provide a visual break and perform final evaluation of tool calls.
-            if (update is ConversationItemStreamingFinishedUpdate itemFinishedUpdate)
+            if (update is OutputStreamingStartedUpdate itemFinishedUpdate)
             {
                 Console.WriteLine();
-                if (itemFinishedUpdate.FunctionName == finishConversationTool.Name)
+                if (itemFinishedUpdate.FunctionName == finishedConversationToolName)
                 {
                     Console.WriteLine($" <<< Finish tool invoked -- ending conversation!");
                     break;
@@ -107,7 +96,7 @@ public class Program
             }
 
             // error commands, as the name implies, are raised when something goes wrong.
-            if (update is ConversationErrorUpdate errorUpdate)
+            if (update is RealtimeErrorUpdate errorUpdate)
             {
                 Console.WriteLine();
                 Console.WriteLine();
@@ -118,7 +107,49 @@ public class Program
         }
     }
 
-    private static RealtimeConversationClient GetConfiguredClient()
+    private static ConversationSessionOptions CreateConversationSessionOptions(string instructions)
+    {
+        ConversationSessionOptions sessionOptions = new()
+        {
+            Instructions = instructions,
+            Voice = ConversationVoice.Alloy,
+            InputAudioFormat = RealtimeAudioFormat.Pcm16,
+            OutputAudioFormat = RealtimeAudioFormat.Pcm16,
+            // Input transcription options must be provided to enable transcribed feedback for input audio
+            InputTranscriptionOptions = new()
+            {
+                Model = "whisper-1",
+            },
+        };
+
+        // We'll add a simple function tool that enables the model to interpret user input to figure out when it
+        // might be a good time to stop the interaction.
+        ConversationFunctionTool finishConversationTool = new(finishedConversationToolName)
+        {
+            Description = "Invoked when the user says goodbye, expresses being finished, or otherwise seems to want to stop the interaction.",
+            Parameters = BinaryData.FromString("{}")
+        };
+
+        sessionOptions.Tools.Add(finishConversationTool);
+        return sessionOptions;
+    }
+
+    #region Configuration
+
+    private static string GetModel()
+    {
+        string? aoaiDeployment = Environment.GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT");
+        
+
+        if (string.IsNullOrEmpty(aoaiDeployment))
+        {
+            var config = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
+            aoaiDeployment = config["AZURE_OPENAI_DEPLOYMENT"];
+        }
+        return string.IsNullOrEmpty(aoaiDeployment) ? "gpt-realtime" : aoaiDeployment;
+    }
+
+    private static RealtimeClient GetConfiguredClient()
     {
         string? aoaiEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
         string? aoaiUseEntra = Environment.GetEnvironmentVariable("AZURE_OPENAI_USE_ENTRA");
@@ -163,7 +194,7 @@ public class Program
         }
     }
 
-    private static RealtimeConversationClient GetConfiguredClientForAzureOpenAIWithEntra(
+    private static RealtimeClient GetConfiguredClientForAzureOpenAIWithEntra(
         string aoaiEndpoint,
         string? aoaiDeployment)
     {
@@ -174,10 +205,10 @@ public class Program
             : $" * Using deployment (AZURE_OPENAI_DEPLOYMENT): {aoaiDeployment}");
 
         AzureOpenAIClient aoaiClient = new(new Uri(aoaiEndpoint), new DefaultAzureCredential());
-        return aoaiClient.GetRealtimeConversationClient(aoaiDeployment);
+        return aoaiClient.GetRealtimeClient();
     }
 
-    private static RealtimeConversationClient GetConfiguredClientForAzureOpenAIWithKey(
+    private static RealtimeClient GetConfiguredClientForAzureOpenAIWithKey(
         string aoaiEndpoint,
         string? aoaiDeployment,
         string aoaiApiKey)
@@ -189,16 +220,17 @@ public class Program
             : $" * Using deployment (AZURE_OPENAI_DEPLOYMENT): {aoaiDeployment}");
 
         AzureOpenAIClient aoaiClient = new(new Uri(aoaiEndpoint), new ApiKeyCredential(aoaiApiKey));
-        return aoaiClient.GetRealtimeConversationClient(aoaiDeployment);
+        return aoaiClient.GetRealtimeClient();
     }
 
-    private static RealtimeConversationClient GetConfiguredClientForOpenAIWithKey(string oaiApiKey)
+    private static RealtimeClient GetConfiguredClientForOpenAIWithKey(string oaiApiKey)
     {
         string oaiEndpoint = "https://api.openai.com/v1";
         Console.WriteLine($" * Connecting to OpenAI endpoint (OPENAI_ENDPOINT): {oaiEndpoint}");
         Console.WriteLine($" * Using API key (OPENAI_API_KEY): {oaiApiKey[..5]}**");
 
         OpenAIClient aoaiClient = new(new ApiKeyCredential(oaiApiKey));
-        return aoaiClient.GetRealtimeConversationClient("gpt-4o-realtime-preview-2024-10-01");
+        return aoaiClient.GetRealtimeClient();
     }
+    #endregion
 }

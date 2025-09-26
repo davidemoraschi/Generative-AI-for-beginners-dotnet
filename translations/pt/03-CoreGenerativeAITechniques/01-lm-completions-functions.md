@@ -24,7 +24,7 @@ Vamos ver como você pode usar conclusões de texto utilizando a biblioteca **Mi
 
 // this example illustrates using a model hosted on GitHub Models
 IChatClient client = new ChatCompletionsClient(
-    endpoint: new Uri("https://models.inference.ai.azure.com"),
+    endpoint: new Uri("https://models.github.ai/inference"),
     new AzureKeyCredential(githubToken)) // githubToken is retrieved from the environment variables
     .AsChatClient("gpt-4o-mini");
 
@@ -149,7 +149,7 @@ Existem alguns passos de configuração que você precisa seguir para chamar fun
 
     ```csharp
     IChatClient client = new ChatCompletionsClient(
-        endpoint: new Uri("https://models.inference.ai.azure.com"),
+        endpoint: new Uri("https://models.github.ai/inference"),
         new AzureKeyCredential(githubToken)) // githubToken is retrieved from the environment variables
     .AsChatClient("gpt-4o-mini")
     .AsBuilder()

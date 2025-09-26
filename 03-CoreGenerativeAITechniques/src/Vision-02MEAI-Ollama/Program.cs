@@ -28,10 +28,9 @@ List<ChatMessage> messages =
     new ChatMessage(ChatRole.User, [aic])
  ];
 
+// send the messages to the assistant
 var imageAnalysis = await chatClient.GetResponseAsync(messages);
 
-// send the messages to the assistant
-var response = await chatClient.GetResponseAsync(messages);
 Console.WriteLine($"Prompt: {prompt}");
 Console.WriteLine($"Image: {imageFileName}");
-Console.WriteLine($"Response: {imageAnalysis.Message.Text}");
+Console.WriteLine($"Response: {imageAnalysis.Text}");

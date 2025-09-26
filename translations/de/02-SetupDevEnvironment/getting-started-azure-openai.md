@@ -57,7 +57,7 @@ Um sicher zu sein, fügen wir den gerade erstellten API-Schlüssel zu den Secret
 1. Gehe zum Tab **Settings** deines geforkten Repositories, erweitere **Secrets and variables** im Menü auf der linken Seite und wähle **Codespaces**.
 
     ![Ein neues Codespace-Secret hinzufügen](../../../translated_images/codespaces-secret.0e168026d0078356489f51ca61b195603283511c73bb805b056619f994652f7c.de.jpeg)
-1. Benenne dein Secret **AZURE_AI_KEY**.
+1. Benenne dein Secret **AZURE_AI_SECRET**.
 1. Füge den API-Schlüssel, den du aus dem Azure AI Foundry-Portal kopiert hast, in das Feld **Secret** ein.
 
 ## Erstellen eines GitHub Codespace
@@ -97,12 +97,12 @@ Aktualisieren wir nun den Code, um das neu bereitgestellte Modell zu verwenden. 
 
     ```bash
     dotnet add package Azure.AI.OpenAI
-    dotnet add package Microsoft.Extensions.AI.OpenAI --version 9.1.0-preview.1.25064.3
+    dotnet add package Microsoft.Extensions.AI.OpenAI --version 9.5.0-preview.1.25265.7
     ```
 
 [Weitere Informationen über Azure.AI.OpenAI](https://www.nuget.org/packages/Azure.AI.OpenAI/2.1.0#show-readme-container).
 
-1. Öffne `/workspaces/Generative-AI-for-beginners-dotnet/02-SettingUp.NETDev/src/BasicChat-01MEAI/Program.cs`.
+1. Öffne `/workspaces/Generative-AI-for-beginners-dotnet/02-SetupDevEnvironment/src/BasicChat-01MEAI/Program.cs`.
 
     Füge die folgenden `using`-Anweisungen am Anfang der Datei hinzu:
 
@@ -156,7 +156,7 @@ In dieser Lektion hast du gelernt, wie du deine Entwicklungsumgebung für den Re
 
 - [Azure AI Foundry-Dokumentation](https://learn.microsoft.com/azure/ai-services/)  
 - [Arbeiten mit GitHub Codespaces](https://docs.github.com/en/codespaces/getting-started)  
-- [Wie man Modelle in Azure AI Foundry bereitstellt](https://learn.microsoft.com/azure/ai-services/deploy/)  
+- [Wie man Modelle in Azure AI Foundry bereitstellt](https://learn.microsoft.com/azure/ai-foundry/how-to/deploy-models-openai)  
 - [Azure.AI.OpenAI NuGet-Paket](https://www.nuget.org/packages/Azure.AI.OpenAI)
 
 ## Nächste Schritte

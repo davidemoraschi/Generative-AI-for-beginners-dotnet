@@ -12,9 +12,9 @@ if (string.IsNullOrEmpty(githubToken))
 
 IChatClient chatClient =
     new ChatCompletionsClient(
-        endpoint: new Uri("https://models.inference.ai.azure.com"),
+        endpoint: new Uri("https://models.github.ai/inference"),
         new AzureKeyCredential(githubToken))
-        .AsChatClient("gpt-4o-mini");
+        .AsIChatClient("gpt-4o-mini");
 
 
 // images
@@ -32,7 +32,7 @@ var promptReceipt = "I bought the coffee and the sausage. How much do I owe? Add
 string systemPrompt = @"You are a useful assistant that describes images using a direct style.";
 var prompt = promptDescribe;
 string imageFileName = imgRunningShoes;
-string image = Path.Combine(Directory.GetCurrentDirectory(), "images", imageFileName);
+string image = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName, "images", imageFileName);
 
 
 List<ChatMessage> messages =
@@ -50,4 +50,4 @@ var message = new ChatMessage(Microsoft.Extensions.AI.ChatRole.User, [aic]);
 var response = await chatClient.GetResponseAsync(messages);
 Console.WriteLine($"Prompt: {prompt}");
 Console.WriteLine($"Image: {imageFileName}");
-Console.WriteLine($"Response: {response.Message}");
+Console.WriteLine($"Response: {response.Text}");

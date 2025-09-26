@@ -20,9 +20,9 @@ ChatOptions options = new ChatOptions
 
 
 IChatClient client = new ChatCompletionsClient(
-    endpoint: new Uri("https://models.inference.ai.azure.com"),
+    endpoint: new Uri("https://models.github.ai/inference"),
     new AzureKeyCredential(githubToken))
-    .AsChatClient("gpt-4o-mini")
+    .AsIChatClient("gpt-4o-mini")
     .AsBuilder()
     .UseFunctionInvocation()
     .Build();

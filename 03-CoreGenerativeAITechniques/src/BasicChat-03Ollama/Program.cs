@@ -15,4 +15,4 @@ prompt.AppendLine("I found this product based on the other reviews. It worked fo
 // send the prompt to the model and wait for the text completion
 var response = await client.GetResponseAsync(prompt.ToString());
 
-Console.WriteLine(response.Message);
+Console.WriteLine(response.Text);

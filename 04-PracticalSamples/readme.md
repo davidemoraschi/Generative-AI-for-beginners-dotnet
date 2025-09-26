@@ -1,3 +1,4 @@
+
 # Canonical Generative AI Samples
 
 See all the concepts you've learned in action in these real-world and practical samples.
@@ -45,7 +46,7 @@ In eShopLite with semantic search, we use Semantic Kernel to enhance the search 
 
 For example, if a user searches for "do you have something for cooking", the search engine can understand that the user is looking for kitchenware and show the most relevant products, in context of our sample, it returns Camping Cookware.
 
-> 🧑‍💻**Sample**: Check out the [eShopLite semantic search sample](https://aka.ms/netaieshoplitesemanticsearch)
+> 🧑‍💻**Sample**: Check out the [eShopLite semantic search sample](https://aka.ms/eshoplite/repo)
 
 ![Image demonstrating the search capabilities in eShopLite](./images/search-eshoplite.png)
 
@@ -234,7 +235,7 @@ Application Insights provides a comprehensive set of telemetry data, helping us 
 
 In the image, we can see the Application Insights dashboard, providing how the services are performing, for example, the calls for our Database, number of requests, and the response time.
 
-> 💡 **Pro Tip**: For more information on eShopLite with Semantic Search, look at the repository to learn more: https://aka.ms/netaieshoplitesemanticsearch
+> 💡 **Pro Tip**: For more information on eShopLite with Semantic Search, look at the repository to learn more: https://aka.ms/eshoplite/repo
 
 ### eShopLite with semantic search using Azure AI Search
 
@@ -242,7 +243,7 @@ In eShopLite end-to-end demo, we use **Azure AI Search** to enhance the search c
 
 It also provides a more scalable and reliable search engine that can handle large amounts of data and user queries. Azure AI Search allows the solution to persist the search indexes, so the information will be available even if the application is restarted.
 
-- [eShopLite with Azure AI Search](https://aka.ms/netaieshoplitesemanticsearchazureaisearch)
+- [eShopLite with Azure AI Search](https://aka.ms/eshoplite/azureaisearch/repo)
 
 ### eShopLite with realtime audio
 
@@ -252,7 +253,7 @@ _⬆️Click the image to watch the video⬆️_
 
 In eShopLite with real-time audio, we use the real-time audio capabilities of GPT-4o to analyze the conversations between the customer and the chatbot, providing a more personalized and engaging experience. For example, if a customer asks for a product recommendation, the chatbot can analyze the customer's request in real-time and provide a more accurate and relevant response.
 
-> 🧑‍💻**Sample**: Check out the [eShopLite semantic search sample](https://aka.ms/netaieshopliterealtimechat)
+> 🧑‍💻**Sample**: Check out the [eShopLite semantic search sample](https://aka.ms/eshoplite/realtimeaudio/repo)
 
 ![Image demonstrating the Realtime Analysis in eShopLite](./images/realtime-analysis-eshoplite.gif)
 
@@ -321,7 +322,7 @@ The conversation session options are configured, including the instructions, voi
 
 Each tool is added to the session options, and the conversation session is started with the configured options. Those can be changed to fit the user's needs.
 
-> 🧑‍💻**Sample**: Check out the [eShopLite semantic search sample](https://aka.ms/netaieshopliterealtimechat)
+> 🧑‍💻**Sample**: Check out the [eShopLite semantic search sample](https://aka.ms/eshoplite/realtimeaudio/repo)
 
 ## Creative Writer Agent
 
@@ -508,11 +509,18 @@ Those are just a few examples of how you can use GenAI in your applications. The
 
 ### Additional resources
 
-- [eShopLite with DeepSeek](https://aka.ms/netaieshoplitedeepseekr1)
-- [eShopLite with Azure AI Search](https://aka.ms/netaieshoplitesemanticsearchazureaisearch)
+- [eShopLite with DeepSeek](https://aka.ms/eshoplite/deepseekr1/repo)
+- [eShopLite with ChromaDB](https://aka.ms/eshoplite/chromadb/repo)
+- [eShopLite with DeepSeek](https://aka.ms/eshoplite/deepseekr1/repo)
+- [eShopLite with MCP](https://aka.ms/eshoplite/mcp/repo)
+- [eShopLite with Azure AI Search](https://aka.ms/eshoplite/AzureAISearch/repo)
 
 ### Next steps
 
+Learn about .NET Generative AI samples in the new lesson:
+
+👉 [Lesson 05: Generative App Samples](../05-AppCreatedWithGenAI/readme.md)
+
 Learn about responsible AI practices and how to ensure that your AI models are ethical and have a positive impact!
 
-👉 [Responsible AI](../05-ResponsibleGenAI/readme.md)
+👉 [Responsible AI](../09-ResponsibleGenAI/readme.md)

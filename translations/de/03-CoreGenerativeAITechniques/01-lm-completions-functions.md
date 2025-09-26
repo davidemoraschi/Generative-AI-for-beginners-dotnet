@@ -24,7 +24,7 @@ Schauen wir uns an, wie Sie Textvervollständigungen mit der **Microsoft.Extensi
 
 // this example illustrates using a model hosted on GitHub Models
 IChatClient client = new ChatCompletionsClient(
-    endpoint: new Uri("https://models.inference.ai.azure.com"),
+    endpoint: new Uri("https://models.github.ai/inference"),
     new AzureKeyCredential(githubToken)) // githubToken is retrieved from the environment variables
     .AsChatClient("gpt-4o-mini");
 
@@ -149,7 +149,7 @@ Es gibt ein paar Schritte, die Sie einrichten müssen, um Funktionen mit MEAI au
 
     ```csharp
     IChatClient client = new ChatCompletionsClient(
-        endpoint: new Uri("https://models.inference.ai.azure.com"),
+        endpoint: new Uri("https://models.github.ai/inference"),
         new AzureKeyCredential(githubToken)) // githubToken is retrieved from the environment variables
     .AsChatClient("gpt-4o-mini")
     .AsBuilder()

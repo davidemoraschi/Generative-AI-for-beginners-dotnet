@@ -57,7 +57,7 @@
 2. 转到 fork 仓库的 **Settings** 标签页，从左侧菜单中展开 **Secrets and variables**，然后选择 **Codespaces**。
 
     ![添加新的 Codespace Secret](../../../translated_images/codespaces-secret.0e168026d0078356489f51ca61b195603283511c73bb805b056619f994652f7c.zh.jpeg)
-3. 将你的 Secret 命名为 **AZURE_AI_KEY**。
+3. 将你的 Secret 命名为 **AZURE_AI_SECRET**。
 4. 将你从 Azure AI Foundry 门户复制的 API 密钥粘贴到 **Secret** 字段中。
 
 ## 创建一个 GitHub Codespace
@@ -97,12 +97,12 @@
 
     ```bash
     dotnet add package Azure.AI.OpenAI
-    dotnet add package Microsoft.Extensions.AI.OpenAI --version 9.1.0-preview.1.25064.3
+    dotnet add package Microsoft.Extensions.AI.OpenAI --version 9.5.0-preview.1.25265.7
     ```
 
 [更多关于 Azure.AI.OpenAI 的信息](https://www.nuget.org/packages/Azure.AI.OpenAI/2.1.0#show-readme-container)。
 
-3. 打开 `/workspaces/Generative-AI-for-beginners-dotnet/02-SettingUp.NETDev/src/BasicChat-01MEAI/Program.cs`。
+3. 打开 `/workspaces/Generative-AI-for-beginners-dotnet/02-SetupDevEnvironment/src/BasicChat-01MEAI/Program.cs`。
 
     在文件顶部添加以下 using 语句：
 
@@ -156,7 +156,7 @@
 
 - [Azure AI Foundry 文档](https://learn.microsoft.com/azure/ai-services/)
 - [使用 GitHub Codespaces](https://docs.github.com/en/codespaces/getting-started)
-- [如何在 Azure AI Foundry 中部署模型](https://learn.microsoft.com/azure/ai-services/deploy/)
+- [如何在 Azure AI Foundry 中部署模型](https://learn.microsoft.com/azure/ai-foundry/how-to/deploy-models-openai)
 - [Azure.AI.OpenAI NuGet 包](https://www.nuget.org/packages/Azure.AI.OpenAI)
 
 ## 下一步

@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36203.30
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceAINet.GameActionProcessor", "SpaceAINet.GameActionProcessor\SpaceAINet.GameActionProcessor.csproj", "{E859A5B4-0402-FB3E-6220-30A395AB76BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Aspire", "1 - Aspire", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Game", "2 - Game", "{F4969A88-446E-43B3-B2AC-CCEB0334D43F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Tests", "3 - Tests", "{0BB23B46-1F29-462E-9F33-6B8A7ED66EEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceAINet.ServiceDefaults", "SpaceAINet.ServiceDefaults\SpaceAINet.ServiceDefaults.csproj", "{3805C055-51E4-49E9-90BF-9DE4F91A0AFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceAINet.Console", "SpaceAINet.Console\SpaceAINet.Console.csproj", "{B95C3939-40AF-EEA3-F3F7-AE362A00F0D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceAINet.Screenshot", "SpaceAINet.Screenshot\SpaceAINet.Screenshot.csproj", "{065B0249-C5B9-DEBB-526B-0449D1E9CD1D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E859A5B4-0402-FB3E-6220-30A395AB76BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E859A5B4-0402-FB3E-6220-30A395AB76BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E859A5B4-0402-FB3E-6220-30A395AB76BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E859A5B4-0402-FB3E-6220-30A395AB76BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3805C055-51E4-49E9-90BF-9DE4F91A0AFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3805C055-51E4-49E9-90BF-9DE4F91A0AFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3805C055-51E4-49E9-90BF-9DE4F91A0AFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3805C055-51E4-49E9-90BF-9DE4F91A0AFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B95C3939-40AF-EEA3-F3F7-AE362A00F0D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B95C3939-40AF-EEA3-F3F7-AE362A00F0D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B95C3939-40AF-EEA3-F3F7-AE362A00F0D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B95C3939-40AF-EEA3-F3F7-AE362A00F0D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{065B0249-C5B9-DEBB-526B-0449D1E9CD1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{065B0249-C5B9-DEBB-526B-0449D1E9CD1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{065B0249-C5B9-DEBB-526B-0449D1E9CD1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{065B0249-C5B9-DEBB-526B-0449D1E9CD1D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E859A5B4-0402-FB3E-6220-30A395AB76BF} = {F4969A88-446E-43B3-B2AC-CCEB0334D43F}
+		{3805C055-51E4-49E9-90BF-9DE4F91A0AFF} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{B95C3939-40AF-EEA3-F3F7-AE362A00F0D4} = {F4969A88-446E-43B3-B2AC-CCEB0334D43F}
+		{065B0249-C5B9-DEBB-526B-0449D1E9CD1D} = {F4969A88-446E-43B3-B2AC-CCEB0334D43F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3B0B7CD1-B863-49D6-B397-6C5A7D90C74B}
+	EndGlobalSection
+EndGlobal

@@ -20,13 +20,28 @@ Let's see how you would use text completions using the **Microsoft.Extensions.AI
 
 > 🧑‍💻**Sample code**: [Here is a working example of this application](./src/BasicChat-01MEAI/) you can follow along with.
 
-```csharp
+#### How to run the sample code
 
+To run the sample code, you'll need to:
+
+1. Make sure you have set up a GitHub Codespace with the appropriate environment as described in the [Setup guide](../02-SetupDevEnvironment/readme.md)
+2. Ensure you have configured your GitHub Token as described in the [Pre-flight check section](../02-SetupDevEnvironment/readme.md#pre-flight-check-setting-up-github-access-tokens)
+3. Open a terminal in your codespace (Ctrl+` or Cmd+`)
+4. Navigate to the sample code directory:
+   ```bash
+   cd 03-CoreGenerativeAITechniques/src/BasicChat-01MEAI
+   ```
+5. Run the application:
+   ```bash
+   dotnet run
+   ```
+
+```csharp
 // this example illustrates using a model hosted on GitHub Models
 IChatClient client = new ChatCompletionsClient(
-    endpoint: new Uri("https://models.inference.ai.azure.com"),
-    new AzureKeyCredential(githubToken)) // githubToken is retrieved from the environment variables
-    .AsChatClient("gpt-4o-mini");
+        endpoint: new Uri("https://models.github.ai/inference"),
+        new AzureKeyCredential(githubToken))
+        .AsIChatClient("Phi-3.5-MoE-instruct");
 
 // here we're building the prompt
 StringBuilder prompt = new StringBuilder();
@@ -39,16 +54,21 @@ prompt.AppendLine("I found this product based on the other reviews. It worked fo
 // send the prompt to the model and wait for the text completion
 var response = await client.GetResponseAsync(prompt.ToString());
 
-// display the repsonse
-Console.WriteLine(response.Message);
-
+// display the response
+Console.WriteLine(response.Text);
 ```
 
 > 🗒️**Note:** This example showed GitHub Models as the hosting service. If you want to use Ollama, [check out this example](./src/BasicChat-03Ollama/) (it instantiates a different `IChatClient`).
 > 
 > If you want to use Azure AI Foundry you can use the same code, but you will need to change the endpoint and the credentials.
+>
+> **GitHub Models Endpoint:** The endpoint `https://models.github.ai/inference` is the new dedicated GitHub Models endpoint as announced in the [GitHub Models deprecation notice](https://github.blog/changelog/2025-07-17-deprecation-of-azure-endpoint-for-github-models/), replacing the previous Azure-based endpoint.
+>
+> If you want to use both Ollama and Semantic Kernel together, [check out the BasicChat-04OllamaSK example](./src/BasicChat-04OllamaSK/).
+> 
+> For instructions on how to set up Ollama, refer to [Getting Started with Ollama](../02-SetupDevEnvironment/getting-started-ollama.md).
 
-> 🙋 **Need help?**: If you encounter any issues, [open an issue in the repository](https://github.com/microsoft/Generative-AI-for-beginners-dotnet/issues/new).
+> 🙋 **Need help?**: If you encounter any issues running this example, [open an issue in the repository](https://github.com/microsoft/Generative-AI-for-beginners-dotnet/issues/new?template=Blank+issue) and we'll help you troubleshoot.
 
 ### Chat applications
 
@@ -68,13 +88,14 @@ During the chat with the model, you will need to keep track of the chat history.
 
 Let's take a look at how you would build a chat application using MEAI.
 
-```csharp
+> 🧑‍💻**Sample code**: You can find complete chat application examples in the [BasicChat-01MEAI](./src/BasicChat-01MEAI/) and [BasicChat-02SK](./src/BasicChat-02SK/) directories.
 
+```csharp
 // assume IChatClient is instantiated as before
 
 List<ChatMessage> conversation =
 [
-    new (ChatRole.System, "You are a product review assistant. Your job is to help people write great product reviews. Keep asking questions on the person's experience with the product until you have enough information to write a review. Then write the review for them and ask if they are happy with it.")
+    new ChatMessage(ChatRole.System, "You are a product review assistant. Your job is to help people write great product reviews. Keep asking questions on the person's experience with the product until you have enough information to write a review. Then write the review for them and ask if they are happy with it.")
 ];
 
 Console.Write("Start typing a review (type 'q' to quit): ");
@@ -93,16 +114,15 @@ while (true)
 
     // Process the message with the chat client (example)
     var response = await client.GetResponseAsync(conversation);
-    conversation.Add(response.Message);
+    conversation.AddRange(response.Messages);
     
-    Console.WriteLine(response.Message.Text);    
+    Console.WriteLine(response.Text);    
 }
-
 ```
 
 > 🗒️**Note:** This can also be done with Semantic Kernel. [Check out the code here](./src/BasicChat-02SK/).
 
-> 🙋 **Need help?**: If you encounter any issues, [open an issue in the repository](https://github.com/microsoft/Generative-AI-for-beginners-dotnet/issues/new).
+> 🙋 **Need help?**: If you encounter any issues running the chat application examples, [open an issue in the repository](https://github.com/microsoft/Generative-AI-for-beginners-dotnet/issues/new?template=Blank+issue) and we'll help you troubleshoot.
 
 ## Function calling
 
@@ -118,6 +138,10 @@ When building AI applications you are not limited to just text-based interaction
 
 There are a couple of setup steps you need to take in order to call functions with MEAI.
 
+> 🧑‍💻**Sample code**: [Here is a working example of function calling](./src/MEAIFunctions/) you can follow along with. To run this example, follow the same steps as for the previous examples, but navigate to `03-CoreGenerativeAITechniques/src/MEAIFunctions` directory.
+>
+> We also have examples showing function calling with [Azure OpenAI](./src/MEAIFunctionsAzureOpenAI/) and [Ollama](./src/MEAIFunctionsOllama/).
+
 1. First, of course, define the function that you want the chatbot to be able to call. In this example we're going to get the weather forecast.
 
     ```csharp
@@ -126,10 +150,10 @@ There are a couple of setup steps you need to take in order to call functions wi
     static string GetTheWeather()
     {    
         var temperature = Random.Shared.Next(5, 20);
-
         var conditions = Random.Shared.Next(0, 1) == 0 ? "sunny" : "rainy";
-
-        return $"The weather is {temperature} degrees C and {conditions}.";
+        var weatherInfo = $"The weather is {temperature} degrees C and {conditions}.";
+        Console.WriteLine($"\tFunction Call - Returning weather info: {weatherInfo}");
+        return weatherInfo;
     }
 
     ```
@@ -149,23 +173,24 @@ There are a couple of setup steps you need to take in order to call functions wi
 
     ```csharp
     IChatClient client = new ChatCompletionsClient(
-        endpoint: new Uri("https://models.inference.ai.azure.com"),
-        new AzureKeyCredential(githubToken)) // githubToken is retrieved from the environment variables
-    .AsChatClient("gpt-4o-mini")
+        endpoint: new Uri("https://models.github.ai/inference"),
+        new AzureKeyCredential(githubToken))
+    .AsIChatClient("gpt-4o-mini")
     .AsBuilder()
-    .UseFunctionInvocation()  // here we're saying that we could be invoking functions!
+    .UseFunctionInvocation()
     .Build();
     ```
 
 1. Then finally when we interact with the model, we'll send the `ChatOptions` object that specifies the function the model could call if it needs to get the weather info.
 
     ```csharp
-    var responseOne = await client.GetResponseAsync("What is today's date", chatOptions); // won't call the function
-
-    var responseTwo = await client.GetResponseAsync("Should I bring an umbrella with me today?", chatOptions); // will call the function
+    var question = "Do I need an umbrella today?";
+    Console.WriteLine($"question: {question}");
+    var response = await client.GetResponseAsync(question, chatOptions);
+    Console.WriteLine($"response: {response}");
     ```
 
-> 🙋 **Need help?**: If you encounter any issues, [open an issue in the repository](https://github.com/microsoft/Generative-AI-for-beginners-dotnet/issues/new).
+> 🙋 **Need help?**: If you encounter any issues with function calling, [open an issue in the repository](https://github.com/microsoft/Generative-AI-for-beginners-dotnet/issues/new?template=Blank+issue) and we'll help you troubleshoot.
 
 ## Summary
 

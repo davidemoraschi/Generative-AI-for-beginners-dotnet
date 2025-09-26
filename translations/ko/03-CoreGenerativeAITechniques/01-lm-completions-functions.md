@@ -24,7 +24,7 @@ _⬆️이미지를 클릭하여 비디오를 시청하세요⬆️_
 
 // this example illustrates using a model hosted on GitHub Models
 IChatClient client = new ChatCompletionsClient(
-    endpoint: new Uri("https://models.inference.ai.azure.com"),
+    endpoint: new Uri("https://models.github.ai/inference"),
     new AzureKeyCredential(githubToken)) // githubToken is retrieved from the environment variables
     .AsChatClient("gpt-4o-mini");
 
@@ -149,7 +149,7 @@ MEAI로 함수를 호출하려면 몇 가지 설정 단계가 필요합니다.
 
     ```csharp
     IChatClient client = new ChatCompletionsClient(
-        endpoint: new Uri("https://models.inference.ai.azure.com"),
+        endpoint: new Uri("https://models.github.ai/inference"),
         new AzureKeyCredential(githubToken)) // githubToken is retrieved from the environment variables
     .AsChatClient("gpt-4o-mini")
     .AsBuilder()

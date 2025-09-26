@@ -11,14 +11,18 @@ Dans cette leçon, vous apprendrez des compétences pratiques pour créer des ap
 - 🔎 Génération augmentée par récupération (RAG)  
 - 👀 Approches basées sur la vision  
 - 🔊 Création et transcription audio  
+- 🖼️ Génération d'images avec DALL-E  
 - 🧩 Agents et assistants
+- 💻 Exécution locale de modèles avec AI Toolkit et Docker  
 
 Pour cette leçon, nous allons diviser le contenu en sections suivantes :
 
 - [Chats, complétions LLM et appels de fonctions](./01-lm-completions-functions.md)
 - [Génération augmentée par récupération (RAG)](./02-retrieval-augmented-generation.md)
 - [Applications IA pour la vision et l'audio](./03-vision-audio.md)
+- [Génération d'images avec Azure OpenAI](./05-ImageGenerationOpenAI.md)  
 - [Agents](04-agents.md)
+- [Exécution locale de modèles avec AI Toolkit, Docker et Foundry Local](../../../03-CoreGenerativeAITechniques/06-LocalModelRunners.md)  
 
 Nous commencerons par les complétions des modèles de langage, les applications de chat et les implémentations de fonctions avec des modèles de langage dans .NET.
 

@@ -12,7 +12,9 @@
 [![GitHub forks](https://img.shields.io/github/forks/microsoft/Generative-AI-For-Beginners-Dotnet.svg?style=social&label=Fork)](https://github.com/microsoft/Generative-AI-For-Beginners-Dotnet/network/)
 [![GitHub stars](https://img.shields.io/github/stars/microsoft/Generative-AI-For-Beginners-Dotnet.svg?style=social&label=Star)](https://github.com/microsoft/Generative-AI-For-Beginners-Dotnet/stargazers/)
 
-[![Azure AI Community Discord](https://dcbadge.vercel.app/api/server/ByRwuEEgH4)](https://discord.com/invite/ByRwuEEgH4)
+
+[![Azure AI Community Discord](https://img.shields.io/discord/1113626258182504448?label=Azure%20AI%20Community%20Discord)](https://aka.ms/ai-discord/dotnet)
+[![Azure AI Foundry GitHub 討論區](https://img.shields.io/badge/Discussions-Azure%20AI%20Foundry-blueviolet?logo=github&style=for-the-badge)](https://aka.ms/ai-discussions/dotnet)
 
 ![Generative AI for Beginners .NET logo](../../translated_images/main-logo.5ac974278bc20b3520e631aaa6bf8799f2d219c5aec555da85555725546f25f8.tw.jpg)
 
@@ -25,6 +27,32 @@
 別忘了 [給這個 repo 加顆星 (🌟)](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars)，以便日後更方便找到它。
 
 ➡️ [Fork 這個 repo](https://github.com/microsoft/Generative-AI-for-beginners-dotnet/fork) 取得你的副本，然後在你的 GitHub 資料庫中找到它。
+
+## ✨ 最新消息！
+
+我們持續改進這個課程，加入最新的 AI 工具、模型和實作範例：
+
+- **新功能：Foundry Local 示範！**
+  - 第3課現在包含 [Foundry Local 模型](https://github.com/microsoft/Foundry-Local/tree/main) 的實作示範。
+  - 查看官方文件：[Foundry Local 文件](https://learn.microsoft.com/azure/ai-foundry/foundry-local/)
+  - **完整說明和程式碼範例請參見 [03-CoreGenerativeAITechniques/06-LocalModelRunners.md](../../03-CoreGenerativeAITechniques/06-LocalModelRunners.md)**
+
+- **新功能：Azure OpenAI Sora 影片產生示範！**
+  - 第3課現在包含實作示範，展示如何使用新的 [Sora 影片產生模型](https://learn.microsoft.com/azure/ai-services/openai/concepts/video-generation) 在 Azure OpenAI 中從文字提示生成影片。
+  - 這個範例展示如何：
+    - 使用創意提示提交影片產生工作。
+    - 輪詢工作狀態並自動下載產生的影片檔案。
+    - 將產生的影片儲存到桌面以便輕鬆檢視。
+  - 查看官方文件：[Azure OpenAI Sora 影片產生](https://learn.microsoft.com/azure/ai-services/openai/concepts/video-generation)
+  - 在這裡找到範例：[第3課：核心生成式 AI 技術 /src/VideoGeneration-AzureSora-01/Program.cs](../../03-CoreGenerativeAITechniques/src/VideoGeneration-AzureSora-01/Program.cs)
+
+- **新功能：Azure OpenAI 圖像產生模型 (`gpt-image-1`)**：第3課現在包含使用新的 Azure OpenAI 圖像產生模型 `gpt-image-1` 的程式碼範例。學習如何使用最新的 Azure OpenAI 功能從 .NET 產生圖像。
+  - 查看官方文件：[如何使用 Azure OpenAI 圖像產生模型](https://learn.microsoft.com/azure/ai-services/openai/how-to/dall-e?tabs=gpt-image-1) 和 [openai-dotnet 圖像產生指南](https://github.com/openai/openai-dotnet?tab=readme-ov-file#how-to-generate-images) 了解更多詳情。
+  - 在這裡找到範例：[第3課：核心生成式 AI 技術 .. /src/ImageGeneration-01.csproj](../../03-CoreGenerativeAITechniques/src/ImageGeneration-01/ImageGeneration-01.csproj)。
+
+- **新情境：eShopLite 中的並發代理協調**：[eShopLite 存放庫](https://github.com/Azure-Samples/eShopLite/tree/main/scenarios/07-AgentsConcurrent) 現在提供一個情境，展示如何使用 Semantic Kernel 進行並發代理協調。這個情境展示了多個代理如何並行工作來分析使用者查詢並為未來分析提供有價值的洞察。
+
+[在我們的最新消息部分查看所有先前的更新](./10-WhatsNew/readme.md)
 
 ## 🚀 課程簡介
 
@@ -57,14 +85,14 @@
 
 | 語言                | 語言代碼 | 翻譯後的 README 連結                                   | 最後更新日期 |
 |----------------------|----------|-------------------------------------------------------|--------------|
-| 簡體中文            | zh       | [簡體中文翻譯](../zh/README.md)           | 2025-02-19   |
-| 繁體中文            | tw       | [繁體中文翻譯](./README.md)           | 2025-02-19   |
-| 法文                | fr       | [法文翻譯](../fr/README.md)               | 2025-02-19   |
-| 日文                | ja       | [日文翻譯](../ja/README.md)               | 2025-02-19   |
-| 韓文                | ko       | [韓文翻譯](../ko/README.md)               | 2025-02-19   |
-| 葡萄牙文            | pt       | [葡萄牙文翻譯](../pt/README.md)           | 2025-02-19   |
-| 西班牙文            | es       | [西班牙文翻譯](../es/README.md)           | 2025-02-19   |
-| 德文                | de       | [德文翻譯](../de/README.md)               | 2025-02-19   |
+| 簡體中文            | zh       | [簡體中文翻譯](../zh/README.md)           | 2025-06-11   |
+| 繁體中文            | tw       | [繁體中文翻譯](./README.md)           | 2025-06-11   |
+| 法文                | fr       | [法文翻譯](../fr/README.md)               | 2025-06-11   |
+| 日文                | ja       | [日文翻譯](../ja/README.md)               | 2025-06-11   |
+| 韓文                | ko       | [韓文翻譯](../ko/README.md)               | 2025-06-11   |
+| 葡萄牙文            | pt       | [葡萄牙文翻譯](../pt/README.md)           | 2025-06-11   |
+| 西班牙文            | es       | [西班牙文翻譯](../es/README.md)           | 2025-06-11   |
+| 德文                | de       | [德文翻譯](../de/README.md)               | 2025-06-11   |
 
 ## 🛠️ 所需條件
 
@@ -111,10 +139,10 @@
 我們還提供了許多其他內容，助你學習之旅更加順利。快來看看：
 
 - [生成式 AI 初學者課程](https://aka.ms/genai-beginners)
-- [生成式 AI 初學者課程 .NET](https://github.com/microsoft/Generative-AI-for-beginners-dotnet)
-- [使用 JavaScript 的生成式 AI](https://github.com/microsoft/generative-ai-with-javascript)
+- [生成式 AI 初學者課程 .NET](https://aka.ms/genainet)
+- [使用 JavaScript 的生成式 AI](https://aka.ms/genai-js-course)
 - [AI 初學者課程](https://aka.ms/ai-beginners)
-- [AI Agents 初學者課程](https://github.com/microsoft/ai-agents-for-beginners)
+- [AI Agents 初學者課程](https://aka.ms/ai-agents-beginners)
 - [資料科學初學者課程](https://aka.ms/datascience-beginners)
 - [機器學習初學者課程](https://aka.ms/ml-beginners)
 - [網路安全初學者課程](https://github.com/microsoft/Security-101)
@@ -124,8 +152,7 @@
 - [精通 GitHub Copilot 進行協作編程](https://github.com/microsoft/Mastering-GitHub-Copilot-for-Paired-Programming)
 - [精通 GitHub Copilot for C#/.NET 開發者](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers)
 - [選擇你的 Copilot 冒險之旅](https://github.com/microsoft/CopilotAdventures)
+- [Phi Cookbook: 微軟 Phi 模型實作範例](https://aka.ms/phicookbook)
 
 [讓我們開始學習生成式 AI 和 .NET 吧！](02-SetupDevEnvironment/readme.md) 🚀
-
-**免責聲明**:  
 本文件使用基於機器的人工智能翻譯服務進行翻譯。我們雖然努力確保準確性，但請注意，自動翻譯可能會包含錯誤或不準確之處。應以原文文件為權威來源。如需關鍵信息，建議尋求專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或誤讀不承擔責任。

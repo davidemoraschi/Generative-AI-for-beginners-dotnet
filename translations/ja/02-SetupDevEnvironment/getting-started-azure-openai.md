@@ -57,7 +57,7 @@ Azure AI Foundry モデルを使用するには、Azure AI Foundry ポータル�
 1. フォークしたリポジトリの **Settings** タブに移動し、左側のメニューから **Secrets and variables** を展開して **Codespaces** を選択します。
 
     ![新しい Codespace シークレットを追加](../../../translated_images/codespaces-secret.0e168026d0078356489f51ca61b195603283511c73bb805b056619f994652f7c.ja.jpeg)
-1. シークレット名を **AZURE_AI_KEY** とします。
+1. シークレット名を **AZURE_AI_SECRET** とします。
 1. Azure AI Foundry ポータルからコピーした API キーを **Secret** フィールドに貼り付けます。
 
 ## GitHub Codespace の作成
@@ -97,12 +97,12 @@ Azure AI Foundry モデルを使用するには、Azure AI Foundry ポータル�
 
     ```bash
     dotnet add package Azure.AI.OpenAI
-    dotnet add package Microsoft.Extensions.AI.OpenAI --version 9.1.0-preview.1.25064.3
+    dotnet add package Microsoft.Extensions.AI.OpenAI --version 9.5.0-preview.1.25265.7
     ```
 
 [Azure.AI.OpenAI に関する詳細はこちら](https://www.nuget.org/packages/Azure.AI.OpenAI/2.1.0#show-readme-container)。
 
-1. `/workspaces/Generative-AI-for-beginners-dotnet/02-SettingUp.NETDev/src/BasicChat-01MEAI/Program.cs` を開きます。
+1. `/workspaces/Generative-AI-for-beginners-dotnet/02-SetupDevEnvironment/src/BasicChat-01MEAI/Program.cs` を開きます。
 
     ファイルの先頭に次の using 文を追加します：
 
@@ -111,7 +111,7 @@ Azure AI Foundry モデルを使用するには、Azure AI Foundry ポータル�
     using Azure.AI.OpenAI;
     using Microsoft.Extensions.AI;
 
-1. Create new variables to hold the model name, endpoint, and API key:
+1. モデル名、エンドポイント、API key を保持するための新しい変数を作成します。
 
     ```csharp
     var deploymentName = "< deployment name > "; // 例: "gpt-4o-mini"
@@ -121,22 +121,23 @@ Azure AI Foundry モデルを使用するには、Azure AI Foundry ポータル�
 
     Making sure to replace `< deployment name >`, and `< endpoint >` with the values you noted above.
 
-1. Replace the `IChatClient` creation with the following code:
+1. `IChatClient` の作成を次のコードに置き換えます。
 
     ```csharp
     IChatClient client = new AzureOpenAIClient(
         endpoint,
         apiKey)
-    .AsChatClient(deploymentName);
+    .GetChatClient(deploymentName)
+    .AsIChatClient();
     ```
 
-1. Run the following command in the terminal:
+1. ターミナルで次のコマンドを実行します。
 
     ```bash
     dotnet run
     ```
 
-1. You should see output similar to the following:
+1. 次のような出力が表示されます。
 
     ```bash
     人工知能 (AI) とは、人間の知能を模倣するようにプログラムされた機械を指します。AI は、人間の知能を必要とするタスクをコンピューターやシステムが実行できるようにするさまざまな技術やアプローチを包含しています。これには以下のタスクが含まれます：
@@ -156,14 +157,14 @@ Azure AI Foundry モデルを使用するには、Azure AI Foundry ポータル�
 
 - [Azure AI Foundry ドキュメント](https://learn.microsoft.com/azure/ai-services/)  
 - [GitHub Codespaces の使用方法](https://docs.github.com/en/codespaces/getting-started)  
-- [Azure AI Foundry でモデルをデプロイする方法](https://learn.microsoft.com/azure/ai-services/deploy/)  
+- [Azure AI Foundry でモデルをデプロイする方法](https://learn.microsoft.com/azure/ai-foundry/how-to/deploy-models-openai)  
 - [Azure.AI.OpenAI NuGet パッケージ](https://www.nuget.org/packages/Azure.AI.OpenAI)
 
 ## 次のステップ
 
 次は、最初の AI アプリケーションを作成する方法を学びます！ 🚀
 
-👉 [コア生成 AI テクニック](../03-CoreGenerativeAITechniques/readme.md)
+👉 [生成 AI のコア技術](../03-CoreGenerativeAITechniques/readme.md)
 
 **免責事項**:  
 この文書は、機械翻訳AIサービスを使用して翻訳されています。正確性を追求しておりますが、自動翻訳には誤りや不正確さが含まれる場合があります。元の言語で作成された原文が信頼できる正式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳をお勧めします。この翻訳の使用に起因する誤解や誤った解釈について、当方は一切の責任を負いません。

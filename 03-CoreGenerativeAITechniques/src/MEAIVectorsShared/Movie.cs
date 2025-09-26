@@ -1,32 +1,32 @@
 ﻿using Microsoft.Extensions.VectorData;
 public class Movie<T>
 {
-    [VectorStoreRecordKey]
+    [VectorStoreKey]
     public T Key { get; set; }
 
-    [VectorStoreRecordData]
+    [VectorStoreData]
     public string? Title { get; set; }
 
-    [VectorStoreRecordData]
+    [VectorStoreData]
     public int? Year { get; set; }
 
-    [VectorStoreRecordData]
+    [VectorStoreData]
     public string? Category { get; set; }
 
-    [VectorStoreRecordData]
+    [VectorStoreData]
     public string? Description { get; set; }
 
 }
 
 public class MovieVector<T> : Movie<T>
 {
-    [VectorStoreRecordVector(384, DistanceFunction.CosineSimilarity)]
+    [VectorStoreVector(384)]
     public ReadOnlyMemory<float> Vector { get; set; }
 }
 
 public class MovieSQLite<T> : Movie<T>
 {
-    [VectorStoreRecordVector(Dimensions: 4, DistanceFunction.CosineDistance)]
+    [VectorStoreVector(Dimensions: 4)]
     public ReadOnlyMemory<float>? DescriptionEmbedding { get; set; }
 
 }

@@ -24,7 +24,7 @@ Veamos cómo usarías completaciones de texto utilizando la biblioteca **Microso
 
 // this example illustrates using a model hosted on GitHub Models
 IChatClient client = new ChatCompletionsClient(
-    endpoint: new Uri("https://models.inference.ai.azure.com"),
+    endpoint: new Uri("https://models.github.ai/inference"),
     new AzureKeyCredential(githubToken)) // githubToken is retrieved from the environment variables
     .AsChatClient("gpt-4o-mini");
 
@@ -132,7 +132,7 @@ Hay algunos pasos de configuración que necesitas realizar para llamar funciones
         return $"The weather is {temperature} degrees C and {conditions}.";
     }
 
-```
+    ```
 
 2. Luego, vamos a crear un objeto `ChatOptions` que le indicará a MEAI qué funciones están disponibles.
 
@@ -143,13 +143,13 @@ Hay algunos pasos de configuración que necesitas realizar para llamar funciones
         Tools = [AIFunctionFactory.Create(GetTheWeather)]
     };
 
-```
+    ```
 
 3. Cuando instanciemos el objeto `IChatClient`, querremos especificar que usaremos invocación de funciones.
 
     ```csharp
     IChatClient client = new ChatCompletionsClient(
-        endpoint: new Uri("https://models.inference.ai.azure.com"),
+        endpoint: new Uri("https://models.github.ai/inference"),
         new AzureKeyCredential(githubToken)) // githubToken is retrieved from the environment variables
     .AsChatClient("gpt-4o-mini")
     .AsBuilder()

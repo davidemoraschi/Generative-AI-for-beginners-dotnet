@@ -11,14 +11,18 @@
 - 🔎 검색 기반 생성(RAG)  
 - 👀 비전 기반 AI 접근 방식  
 - 🔊 오디오 생성 및 전사  
+- 🖼️ DALL-E를 활용한 이미지 생성  
 - 🧩 에이전트 및 어시스턴트  
+- 💻 AI Toolkit 및 Docker를 활용한 로컬 모델 실행  
 
 이 수업은 다음과 같은 섹션으로 나누어 진행됩니다:
 
 - [채팅, LLM 완성과 함수 호출](./01-lm-completions-functions.md)  
 - [검색 기반 생성(RAG)](./02-retrieval-augmented-generation.md)  
 - [비전 및 오디오 AI 애플리케이션](./03-vision-audio.md)  
+- [Azure OpenAI를 활용한 이미지 생성](./05-ImageGenerationOpenAI.md)  
 - [에이전트](04-agents.md)  
+- [AI Toolkit, Docker, Foundry Local을 활용한 로컬 모델 실행](../../../03-CoreGenerativeAITechniques/06-LocalModelRunners.md)  
 
 우리는 언어 모델 완성과 채팅 애플리케이션, 그리고 .NET에서 언어 모델을 활용한 함수 구현부터 시작할 것입니다.
 

@@ -12,7 +12,7 @@ if (string.IsNullOrEmpty(githubToken))
     githubToken = config["GITHUB_TOKEN"];
 }
 var modelId = "Phi-3.5-mini-instruct";
-var uri = "https://models.inference.ai.azure.com";
+var uri = "https://models.github.ai/inference";
 
 
 // create client

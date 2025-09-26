@@ -57,7 +57,7 @@ Para mantener la seguridad, vamos a agregar la clave API que acabas de crear a l
 1. Ve a la pestaña **Settings** de tu repositorio bifurcado, luego expande **Secrets and variables** en el menú de la izquierda y selecciona **Codespaces**.
 
     ![Agregar un nuevo secreto en Codespace](../../../translated_images/codespaces-secret.0e168026d0078356489f51ca61b195603283511c73bb805b056619f994652f7c.es.jpeg)
-1. Nombra tu secreto **AZURE_AI_KEY**.
+1. Nombra tu secreto **AZURE_AI_SECRET**.
 1. Pega la clave API que copiaste del portal de Azure AI Foundry en el campo **Secret**.
 
 ## Crear un Codespace en GitHub
@@ -97,12 +97,12 @@ Ahora actualizaremos el código para usar el modelo recién desplegado. Primero,
 
     ```bash
     dotnet add package Azure.AI.OpenAI
-    dotnet add package Microsoft.Extensions.AI.OpenAI --version 9.1.0-preview.1.25064.3
+    dotnet add package Microsoft.Extensions.AI.OpenAI --version 9.5.0-preview.1.25265.7
     ```
 
 [Más información sobre Azure.AI.OpenAI](https://www.nuget.org/packages/Azure.AI.OpenAI/2.1.0#show-readme-container).
 
-1. Abre `/workspaces/Generative-AI-for-beginners-dotnet/02-SettingUp.NETDev/src/BasicChat-01MEAI/Program.cs`.
+1. Abre `/workspaces/Generative-AI-for-beginners-dotnet/02-SetupDevEnvironment/src/BasicChat-01MEAI/Program.cs`.
 
     Agrega las siguientes declaraciones `using` al principio del archivo:
 
@@ -156,7 +156,7 @@ En esta lección, aprendiste cómo configurar tu entorno de desarrollo para el r
 
 - [Documentación de Azure AI Foundry](https://learn.microsoft.com/azure/ai-services/)  
 - [Trabajar con Codespaces en GitHub](https://docs.github.com/en/codespaces/getting-started)  
-- [Cómo desplegar modelos en Azure AI Foundry](https://learn.microsoft.com/azure/ai-services/deploy/)  
+- [Cómo desplegar modelos en Azure AI Foundry](https://learn.microsoft.com/azure/ai-foundry/how-to/deploy-models-openai)  
 - [Paquete NuGet Azure.AI.OpenAI](https://www.nuget.org/packages/Azure.AI.OpenAI)
 
 ## Próximos Pasos

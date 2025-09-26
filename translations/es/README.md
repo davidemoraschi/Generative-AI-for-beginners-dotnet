@@ -12,7 +12,9 @@
 [![Bifurcaciones en GitHub](https://img.shields.io/github/forks/microsoft/Generative-AI-For-Beginners-Dotnet.svg?style=social&label=Fork)](https://github.com/microsoft/Generative-AI-For-Beginners-Dotnet/network/)
 [![Estrellas en GitHub](https://img.shields.io/github/stars/microsoft/Generative-AI-For-Beginners-Dotnet.svg?style=social&label=Star)](https://github.com/microsoft/Generative-AI-For-Beginners-Dotnet/stargazers/)
 
-[![Azure AI Community Discord](https://dcbadge.vercel.app/api/server/ByRwuEEgH4)](https://discord.com/invite/ByRwuEEgH4)
+
+[![Azure AI Community Discord](https://img.shields.io/discord/1113626258182504448?label=Azure%20AI%20Community%20Discord)](https://aka.ms/ai-discord/dotnet)
+[![Discusiones de Azure AI Foundry en GitHub](https://img.shields.io/badge/Discussions-Azure%20AI%20Foundry-blueviolet?logo=github&style=for-the-badge)](https://aka.ms/ai-discussions/dotnet)
 
 ![Logo de Generative AI para Principiantes .NET](../../translated_images/main-logo.5ac974278bc20b3520e631aaa6bf8799f2d219c5aec555da85555725546f25f8.es.jpg)
 
@@ -25,6 +27,32 @@ Este no es el típico curso de "aquí tienes algo de teoría, suerte". Este repo
 No olvides [darle una estrella (🌟) a este repositorio](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars) para encontrarlo fácilmente más adelante.
 
 ➡️ Obtén tu propia copia [bifurcando este repositorio](https://github.com/microsoft/Generative-AI-for-beginners-dotnet/fork) y encuéntralo en tus propios repositorios.
+
+## ✨ ¡Novedades!
+
+Estamos mejorando constantemente este curso con las últimas herramientas de IA, modelos y ejemplos prácticos:
+
+- **¡Nuevo: Demos de Foundry Local!**
+  - La Lección 3 ahora presenta demostraciones prácticas para [modelos Foundry Local](https://github.com/microsoft/Foundry-Local/tree/main).
+  - Ve la documentación oficial: [Documentación de Foundry Local](https://learn.microsoft.com/azure/ai-foundry/foundry-local/)
+  - **Explicación completa y ejemplos de código están disponibles en [03-CoreGenerativeAITechniques/06-LocalModelRunners.md](../../03-CoreGenerativeAITechniques/06-LocalModelRunners.md)**
+
+- **¡Nuevo: Demo de Generación de Video Azure OpenAI Sora!**
+  - La Lección 3 ahora presenta una demostración práctica que muestra cómo generar videos a partir de prompts de texto usando el nuevo [modelo de generación de video Sora](https://learn.microsoft.com/azure/ai-services/openai/concepts/video-generation) en Azure OpenAI.
+  - El ejemplo demuestra cómo:
+    - Enviar un trabajo de generación de video con un prompt creativo.
+    - Consultar el estado del trabajo y descargar automáticamente el archivo de video resultante.
+    - Guardar el video generado en tu escritorio para una visualización fácil.
+  - Ve la documentación oficial: [Generación de video Azure OpenAI Sora](https://learn.microsoft.com/azure/ai-services/openai/concepts/video-generation)
+  - Encuentra el ejemplo en [Lección 3: Técnicas de IA Generativa Fundamentales /src/VideoGeneration-AzureSora-01/Program.cs](../../03-CoreGenerativeAITechniques/src/VideoGeneration-AzureSora-01/Program.cs)
+
+- **Nuevo: Modelo de Generación de Imágenes Azure OpenAI (`gpt-image-1`)**: La Lección 3 ahora presenta ejemplos de código para usar el nuevo modelo de generación de imágenes de Azure OpenAI, `gpt-image-1`. Aprende cómo generar imágenes desde .NET usando las últimas capacidades de Azure OpenAI.
+  - Ve la documentación oficial: [Cómo usar modelos de generación de imágenes de Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/how-to/dall-e?tabs=gpt-image-1) y la [guía de generación de imágenes openai-dotnet](https://github.com/openai/openai-dotnet?tab=readme-ov-file#how-to-generate-images) para más detalles.
+  - Encuentra el ejemplo en [Lección 3: Técnicas de IA Generativa Fundamentales .. /src/ImageGeneration-01.csproj](../../03-CoreGenerativeAITechniques/src/ImageGeneration-01/ImageGeneration-01.csproj).
+
+- **Nuevo Escenario: Orquestación de Agentes Concurrentes en eShopLite**: El [repositorio eShopLite](https://github.com/Azure-Samples/eShopLite/tree/main/scenarios/07-AgentsConcurrent) ahora presenta un escenario que demuestra la orquestación de agentes concurrentes usando Semantic Kernel. Este escenario muestra cómo múltiples agentes pueden trabajar en paralelo para analizar consultas de usuarios y proporcionar insights valiosos para análisis futuros.
+
+[Ve todas las actualizaciones anteriores en nuestra sección de Novedades](./10-WhatsNew/readme.md)
 
 ## 🚀 Introducción
 
@@ -57,14 +85,14 @@ Aprenderás cómo implementar IA Generativa en proyectos .NET, desde generación
 
 | Idioma               | Código | Enlace al README Traducido                            | Última Actualización |
 |----------------------|--------|------------------------------------------------------|-----------------------|
-| Chino (Simplificado) | zh     | [Traducción al Chino](../zh/README.md)   | 2025-02-19           |
-| Chino (Tradicional)  | tw     | [Traducción al Chino](../tw/README.md)   | 2025-02-19           |
-| Francés              | fr     | [Traducción al Francés](../fr/README.md) | 2025-02-19           |
-| Japonés              | ja     | [Traducción al Japonés](../ja/README.md) | 2025-02-19           |
-| Coreano              | ko     | [Traducción al Coreano](../ko/README.md) | 2025-02-19           |
-| Portugués            | pt     | [Traducción al Portugués](../pt/README.md) | 2025-02-19         |
-| Español              | es     | [Traducción al Español](./README.md) | 2025-02-19           |
-| Alemán               | de     | [Traducción al Alemán](../de/README.md)  | 2025-02-19           |
+| Chino (Simplificado) | zh     | [Traducción al Chino](../zh/README.md)   | 2025-06-11           |
+| Chino (Tradicional)  | tw     | [Traducción al Chino](../tw/README.md)   | 2025-06-11           |
+| Francés              | fr     | [Traducción al Francés](../fr/README.md) | 2025-06-11           |
+| Japonés              | ja     | [Traducción al Japonés](../ja/README.md) | 2025-06-11           |
+| Coreano              | ko     | [Traducción al Coreano](../ko/README.md) | 2025-06-11           |
+| Portugués            | pt     | [Traducción al Portugués](../pt/README.md) | 2025-06-11         |
+| Español              | es     | [Traducción al Español](./README.md) | 2025-06-11           |
+| Alemán               | de     | [Traducción al Alemán](../de/README.md)  | 2025-06-11           |
 
 ## 🛠️ Lo Que Necesitas
 
@@ -111,10 +139,10 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo [LICENS
 Tenemos mucho más contenido para ayudarte en tu proceso de aprendizaje. Échale un vistazo a:
 
 - [Generative AI for Beginners](https://aka.ms/genai-beginners)
-- [Generative AI for Beginners .NET](https://github.com/microsoft/Generative-AI-for-beginners-dotnet)
-- [Generative AI with JavaScript](https://github.com/microsoft/generative-ai-with-javascript)
+- [Generative AI for Beginners .NET](https://aka.ms/genainet)
+- [Generative AI with JavaScript](https://aka.ms/genai-js-course)
 - [AI for Beginners](https://aka.ms/ai-beginners)
-- [AI Agents for Beginners - A Course](https://github.com/microsoft/ai-agents-for-beginners)
+- [AI Agents for Beginners - A Course](https://aka.ms/ai-agents-beginners)
 - [Data Science for Beginners](https://aka.ms/datascience-beginners)
 - [ML for Beginners](https://aka.ms/ml-beginners)
 - [Cybersecurity for Beginners](https://github.com/microsoft/Security-101) 
@@ -124,6 +152,7 @@ Tenemos mucho más contenido para ayudarte en tu proceso de aprendizaje. Échale
 - [Mastering GitHub Copilot for Paired Programming](https://github.com/microsoft/Mastering-GitHub-Copilot-for-Paired-Programming)
 - [Mastering GitHub Copilot for C#/.NET Developers](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers)
 - [Choose Your Own Copilot Adventure](https://github.com/microsoft/CopilotAdventures)
+- [Phi Cookbook: Ejemplos Prácticos con los Modelos Phi de Microsoft](https://aka.ms/phicookbook)
 
 [¡Empecemos a aprender sobre Generative AI y .NET!](02-SetupDevEnvironment/readme.md) 🚀
 
