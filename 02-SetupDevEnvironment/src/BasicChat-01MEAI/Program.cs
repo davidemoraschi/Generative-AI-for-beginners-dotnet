@@ -11,8 +11,8 @@ if (string.IsNullOrEmpty(githubToken))
 
 IChatClient client = new ChatCompletionsClient(
         endpoint: new Uri("https://models.inference.ai.azure.com"),
-        new AzureKeyCredential(Environment.GetEnvironmentVariable("GITHUB_TOKEN") ?? throw new InvalidOperationException("Missing GITHUB_TOKEN environment variable. Ensure you followed the instructions to setup a GitHub Token to use GitHub Models.")))
-        .AsChatClient("Phi-3.5-MoE-instruct");
+        new AzureKeyCredential(githubToken))
+        .AsChatClient("gpt-4o-mini");
 
 var response = await client.GetResponseAsync("What is Quantum Computing?");
 
