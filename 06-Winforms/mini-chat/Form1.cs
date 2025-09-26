@@ -44,7 +44,7 @@ namespace mini_chat
 
             InitializeComponent();
             InitializeQuestionHistory();
-            lst_models.SelectedIndex = 6;
+            lst_models.SelectedIndex = 4;
             if (string.IsNullOrEmpty(githubToken))
             {
                 throw new InvalidOperationException("GitHub token is not set. Please set the GITHUB_TOKEN environment variable.");
@@ -153,6 +153,24 @@ namespace mini_chat
                 {
                     string geminiResponse = await geminiClient.SendMessageAsync(prompt: txt_question.Text, systemMessage: systemMessage);
                     txt_answer.Text = ExtractCode(geminiResponse);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}");
+                }
+            }
+            else if (lst_models.SelectedItem.ToString().StartsWith("sonar"))
+            {
+                string perplexityApiKey = Environment.GetEnvironmentVariable("PERPLEXITY_API_KEY");
+                if (string.IsNullOrEmpty(perplexityApiKey))
+                {
+                    throw new InvalidOperationException("Perplexity API key is not set. Please set the PERPLEXITY_API_KEY environment variable.");
+                }
+                var perplexityClient = new PerplexityClient(perplexityApiKey);
+                try
+                {
+                    string perplexityResponse = await perplexityClient.SendMessageAsync(txt_question.Text);
+                    txt_answer.Text = ExtractCode(perplexityResponse);
                 }
                 catch (Exception ex)
                 {
