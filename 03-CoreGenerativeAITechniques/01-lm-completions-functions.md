@@ -16,9 +16,9 @@ A text completion itself is not a chat application, it is a one and done interac
 
 ### Text completions
 
-Let's see how you would use text completions using the **Microsoft.Extensions.AI** library in .NET. 
+Let's see how you would use text completions using the **Microsoft.Extensions.AI** library in .NET.
 
-> 🧑‍💻**Sample code**: [Here is a working example of this application](./src/BasicChat-01MEAI/) you can follow along with.
+> 🧑‍💻**Sample code**: [Here is a working example of this application](../samples/CoreSamples/BasicChat-01MEAI/) you can follow along with.
 
 #### How to run the sample code
 
@@ -26,12 +26,25 @@ To run the sample code, you'll need to:
 
 1. Make sure you have set up a GitHub Codespace with the appropriate environment as described in the [Setup guide](../02-SetupDevEnvironment/readme.md)
 2. Ensure you have configured your GitHub Token as described in the [Pre-flight check section](../02-SetupDevEnvironment/readme.md#pre-flight-check-setting-up-github-access-tokens)
-3. Open a terminal in your codespace (Ctrl+` or Cmd+`)
+3. Open a terminal in your codespace (Ctrl+`or Cmd+`)
 4. Navigate to the sample code directory:
+
+   If you're using Windows Command Prompt (CMD) or PowerShell:
+
    ```bash
-   cd 03-CoreGenerativeAITechniques/src/BasicChat-01MEAI
+   cd samples\CoreSamples\BasicChat-01MEAI
    ```
+
+   If you're using Linux, macOS, Git Bash, WSL, or the VS Code terminal:
+
+   ```bash
+   cd samples/CoreSamples/BasicChat-01MEAI
+   ```
+
+   > **Note**: GitHub Codespaces runs a Linux environment, so always use forward slashes (`/`) in paths when working in Codespaces, regardless of your local operating system.
+
 5. Run the application:
+
    ```bash
    dotnet run
    ```
@@ -41,7 +54,7 @@ To run the sample code, you'll need to:
 IChatClient client = new ChatCompletionsClient(
         endpoint: new Uri("https://models.github.ai/inference"),
         new AzureKeyCredential(githubToken))
-        .AsIChatClient("Phi-3.5-MoE-instruct");
+        .AsIChatClient("Phi-4-mini-instruct");
 
 // here we're building the prompt
 StringBuilder prompt = new StringBuilder();
@@ -58,14 +71,14 @@ var response = await client.GetResponseAsync(prompt.ToString());
 Console.WriteLine(response.Text);
 ```
 
-> 🗒️**Note:** This example showed GitHub Models as the hosting service. If you want to use Ollama, [check out this example](./src/BasicChat-03Ollama/) (it instantiates a different `IChatClient`).
-> 
-> If you want to use Azure AI Foundry you can use the same code, but you will need to change the endpoint and the credentials.
+> 🗒️**Note:** This example showed GitHub Models as the hosting service. If you want to use Ollama, [check out this example](../samples/CoreSamples/BasicChat-03Ollama/) (it instantiates a different `IChatClient`).
+> If you want to use Microsoft Foundry you can use the same code, but you will need to change the endpoint and the credentials.
+>
 >
 > **GitHub Models Endpoint:** The endpoint `https://models.github.ai/inference` is the new dedicated GitHub Models endpoint as announced in the [GitHub Models deprecation notice](https://github.blog/changelog/2025-07-17-deprecation-of-azure-endpoint-for-github-models/), replacing the previous Azure-based endpoint.
 >
-> If you want to use both Ollama and Semantic Kernel together, [check out the BasicChat-04OllamaSK example](./src/BasicChat-04OllamaSK/).
-> 
+> If you want to use both Ollama and Semantic Kernel together, [check out the BasicChat-04OllamaSK example](../samples/CoreSamples/BasicChat-04OllamaSK/).
+>
 > For instructions on how to set up Ollama, refer to [Getting Started with Ollama](../02-SetupDevEnvironment/getting-started-ollama.md).
 
 > 🙋 **Need help?**: If you encounter any issues running this example, [open an issue in the repository](https://github.com/microsoft/Generative-AI-for-beginners-dotnet/issues/new?template=Blank+issue) and we'll help you troubleshoot.
@@ -88,7 +101,7 @@ During the chat with the model, you will need to keep track of the chat history.
 
 Let's take a look at how you would build a chat application using MEAI.
 
-> 🧑‍💻**Sample code**: You can find complete chat application examples in the [BasicChat-01MEAI](./src/BasicChat-01MEAI/) and [BasicChat-02SK](./src/BasicChat-02SK/) directories.
+> 🧑‍💻**Sample code**: You can find complete chat application examples in the [BasicChat-01MEAI](../samples/CoreSamples/BasicChat-01MEAI/) and [BasicChat-02SK](../samples/CoreSamples/BasicChat-02SK/) directories.
 
 ```csharp
 // assume IChatClient is instantiated as before
@@ -120,7 +133,7 @@ while (true)
 }
 ```
 
-> 🗒️**Note:** This can also be done with Semantic Kernel. [Check out the code here](./src/BasicChat-02SK/).
+> 🗒️**Note:** This can also be done with Semantic Kernel. [Check out the code here](../samples/CoreSamples/BasicChat-02SK/).
 
 > 🙋 **Need help?**: If you encounter any issues running the chat application examples, [open an issue in the repository](https://github.com/microsoft/Generative-AI-for-beginners-dotnet/issues/new?template=Blank+issue) and we'll help you troubleshoot.
 
@@ -132,15 +145,15 @@ _⬆️Click the image to watch the video⬆️_
 
 When building AI applications you are not limited to just text-based interactions. It is possible to extend the functionality of the chatbot by calling pre-defined functions in your code based off user input. In other words, function calls serve as a bridge between the model and external systems.
 
-> 🧑‍💻**Sample code**: [Here is a working example of this application](./src/MEAIFunctions/) you can follow along with.
+> 🧑‍💻**Sample code**: [Here is a working example of this application](../samples/CoreSamples/MEAIFunctions/) you can follow along with.
 
 ### Function calling in chat applications
 
 There are a couple of setup steps you need to take in order to call functions with MEAI.
 
-> 🧑‍💻**Sample code**: [Here is a working example of function calling](./src/MEAIFunctions/) you can follow along with. To run this example, follow the same steps as for the previous examples, but navigate to `03-CoreGenerativeAITechniques/src/MEAIFunctions` directory.
+> 🧑‍💻**Sample code**: [Here is a working example of function calling](../samples/CoreSamples/MEAIFunctions/) you can follow along with. To run this example, follow the same steps as for the previous examples, but navigate to `samples/CoreSamples/MEAIFunctions` directory.
 >
-> We also have examples showing function calling with [Azure OpenAI](./src/MEAIFunctionsAzureOpenAI/) and [Ollama](./src/MEAIFunctionsOllama/).
+> We also have examples showing function calling with [Azure OpenAI](../samples/CoreSamples/MEAIFunctionsAzureOpenAI/) and [Ollama](../samples/CoreSamples/MEAIFunctionsOllama/).
 
 1. First, of course, define the function that you want the chatbot to be able to call. In this example we're going to get the weather forecast.
 
@@ -200,9 +213,9 @@ In the next lesson you'll see how to start chatting with data and build what's k
 
 ## Additional resources
 
-- [Build an AI chat app with .NET](https://learn.microsoft.com/dotnet/ai/quickstarts/get-started-openai?tabs=azd&pivots=openai)
-- [Execute a local .NET function](https://learn.microsoft.com/dotnet/ai/quickstarts/quickstart-azure-openai-tool?tabs=azd&pivots=openai)
-- [Chat with a local AI model](https://learn.microsoft.com/dotnet/ai/quickstarts/quickstart-local-ai)
+* [Build an AI chat app with .NET](https://learn.microsoft.com/dotnet/ai/quickstarts/get-started-openai?tabs=azd&pivots=openai)
+* [Execute a local .NET function](https://learn.microsoft.com/dotnet/ai/quickstarts/quickstart-azure-openai-tool?tabs=azd&pivots=openai)
+* [Chat with a local AI model](https://learn.microsoft.com/dotnet/ai/quickstarts/quickstart-local-ai)
 
 ## Up next
 

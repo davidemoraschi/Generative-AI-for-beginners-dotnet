@@ -71,7 +71,7 @@ _⬆️点击图片观看视频⬆️_
 
     - 在“Note”字段中，输入一个描述性名称（例如 `GenAI-DotNet-Course-Token`）  
     - 设置一个过期日期（推荐：7 天，以遵循安全最佳实践）  
-    - 无需为此令牌添加任何权限。  
+    - **重要**：您必须选择 **`models:read`** 权限范围，此令牌才能与 GitHub Models 配合使用。  
 
 > 💡 **安全提示**：始终使用最低必要的权限范围和最短的有效期来管理访问令牌。这符合最小权限原则，有助于保护您的账户安全。
 
@@ -109,8 +109,10 @@ _⬆️点击图片观看视频⬆️_
 1. 使用以下命令切换到正确的目录：  
 
     ```bash
-    cd 02-SetupDevEnvironment\src\BasicChat-01MEAI
+    cd 02-SetupDevEnvironment/src/BasicChat-01MEAI
     ```
+
+    > **注意**: GitHub Codespaces 运行的是 Linux 环境，因此无论您的本地操作系统是什么，都应该在路径中使用正斜杠 (`/`)。
 
 1. 使用以下命令运行应用程序：  
 

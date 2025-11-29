@@ -71,7 +71,7 @@ Avant toute chose, nous devons configurer les informations d'identification esse
 
     - Sous "Note", fournissez un nom descriptif (par ex. `GenAI-DotNet-Course-Token`)
     - Définissez une date d'expiration (recommandé : 7 jours pour respecter les bonnes pratiques de sécurité)
-    - Aucun besoin d'ajouter des permissions à ce jeton.
+    - **Important** : Vous devez sélectionner la permission **`models:read`** pour que ce jeton fonctionne avec GitHub Models.
 
 > 💡 **Astuce de sécurité** : Utilisez toujours la portée minimale requise et la durée d'expiration la plus courte possible pour vos jetons d'accès. Cela suit le principe du moindre privilège et aide à sécuriser vos jetons.
 
@@ -109,8 +109,10 @@ Une fois que votre Codespace est complètement chargé et configuré, testons un
 1. Passez au bon répertoire en exécutant la commande suivante :
 
     ```bash
-    cd 02-SetupDevEnvironment\src\BasicChat-01MEAI
+    cd 02-SetupDevEnvironment/src/BasicChat-01MEAI
     ```
+
+    > **Note**: GitHub Codespaces exécute un environnement Linux, utilisez donc toujours des barres obliques (`/`) dans les chemins, quel que soit votre système d'exploitation local.
 
 1. Ensuite, exécutez l'application avec la commande suivante :
 
@@ -127,6 +129,47 @@ Une fois que votre Codespace est complètement chargé et configuré, testons un
     ```
 
 > 🙋 **Besoin d'aide ?** : Un problème ? [Ouvrez une issue](https://github.com/microsoft/Generative-AI-for-beginners-dotnet/issues/new?template=Blank+issue) et nous vous aiderons.
+
+## Dépannage
+
+### Erreur : Modèle inconnu ou 404 (Not Found)
+
+Si vous rencontrez une erreur comme :
+```
+Azure.RequestFailedException: Unknown model: /Phi-3.5-MoE-instruct
+Status: 404 (Not Found)
+ErrorCode: unknown_model
+```
+
+Cela signifie généralement l'une des situations suivantes :
+
+1. **Votre code fait référence à un modèle déprécié** : Certains modèles ont été dépréciés ou supprimés de GitHub Models. Par exemple, `Phi-3.5-MoE-instruct` a été déprécié en septembre 2025. Assurez-vous que votre code utilise le modèle actuellement pris en charge.
+
+2. **Votre fork du dépôt est obsolète** : Si vous avez forké ce dépôt avant les mises à jour récentes, votre code peut faire référence à d'anciens noms de modèles. Pour corriger cela :
+   - Récupérez les dernières modifications du dépôt en amont
+   - Assurez-vous que votre fichier `Program.cs` dans `02-SetupDevEnvironment/src/BasicChat-01MEAI` utilise `Phi-4-mini-instruct` (et non les anciens noms de modèles)
+
+3. **Erreur de frappe dans le nom du modèle** : Vérifiez que le nom du modèle dans votre code correspond exactement aux modèles disponibles dans [GitHub Models](https://github.com/marketplace?type=models).
+
+**Solution rapide** : 
+- Ouvrez `/02-SetupDevEnvironment/src/BasicChat-01MEAI/Program.cs`
+- Vérifiez que le nom du modèle est `Phi-4-mini-instruct` :
+  ```csharp
+  .AsIChatClient("Phi-4-mini-instruct");
+  ```
+
+Pour obtenir la liste la plus récente des modèles disponibles, visitez le [GitHub Models Marketplace](https://github.com/marketplace?type=models).
+
+### Guide de migration des modèles
+
+Si vous mettez à jour un ancien code qui utilisait des modèles dépréciés, voici une référence rapide :
+
+| Modèle déprécié (GitHub Models) | Remplacement actuel |
+|----------------------------------|---------------------|
+| Phi-3.5-MoE-instruct | Phi-4-mini-instruct |
+| Phi-3.5-mini-instruct | Phi-4-mini-instruct |
+
+> **Note** : Ce guide de migration s'applique uniquement à **GitHub Models**. Si vous utilisez des exécuteurs de modèles locaux comme Ollama ou Foundry Local, ces plateformes peuvent toujours prendre en charge les modèles Phi-3.5. Consultez la documentation de votre plateforme spécifique pour connaître les modèles disponibles.
 
 ## Résumé
 

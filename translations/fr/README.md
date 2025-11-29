@@ -12,9 +12,8 @@
 [![GitHub forks](https://img.shields.io/github/forks/microsoft/Generative-AI-For-Beginners-Dotnet.svg?style=social&label=Fork)](https://github.com/microsoft/Generative-AI-For-Beginners-Dotnet/network/)
 [![GitHub stars](https://img.shields.io/github/stars/microsoft/Generative-AI-For-Beginners-Dotnet.svg?style=social&label=Star)](https://github.com/microsoft/Generative-AI-For-Beginners-Dotnet/stargazers/)
 
-
 [![Azure AI Community Discord](https://img.shields.io/discord/1113626258182504448?label=Azure%20AI%20Community%20Discord)](https://aka.ms/ai-discord/dotnet)
-[![Discussions Azure AI Foundry sur GitHub](https://img.shields.io/badge/Discussions-Azure%20AI%20Foundry-blueviolet?logo=github&style=for-the-badge)](https://aka.ms/ai-discussions/dotnet)
+[![Discussions Microsoft Foundry sur GitHub](https://img.shields.io/badge/Discussions-Microsoft%20Foundry-blueviolet?logo=github&style=for-the-badge)](https://aka.ms/ai-discussions/dotnet)
 
 ![Logo de Générative AI pour Débutants .NET](../../translated_images/main-logo.5ac974278bc20b3520e631aaa6bf8799f2d219c5aec555da85555725546f25f8.fr.jpg)
 
@@ -28,7 +27,7 @@ N'oubliez pas de [mettre une étoile (🌟) à ce dépôt](https://docs.github.c
 
 ➡️Obtenez votre propre copie en [forkant ce dépôt](https://github.com/microsoft/Generative-AI-for-beginners-dotnet/fork) et retrouvez-le ensuite dans vos propres dépôts.
 
-## ✨ Quoi de neuf !
+## ✨ Quoi de neuf
 
 Nous améliorons constamment ce cours avec les derniers outils IA, modèles et exemples pratiques :
 
@@ -44,11 +43,11 @@ Nous améliorons constamment ce cours avec les derniers outils IA, modèles et e
     - Interroger le statut du travail et télécharger automatiquement le fichier vidéo résultant.
     - Sauvegarder la vidéo générée sur votre bureau pour un visionnage facile.
   - Voir la documentation officielle : [Génération vidéo Azure OpenAI Sora](https://learn.microsoft.com/azure/ai-services/openai/concepts/video-generation)
-  - Trouvez l'exemple dans [Leçon 3 : Techniques IA génératives fondamentales /src/VideoGeneration-AzureSora-01/Program.cs](../../03-CoreGenerativeAITechniques/src/VideoGeneration-AzureSora-01/Program.cs)
+  - Trouvez l'exemple dans [Leçon 3 : Techniques IA génératives fondamentales /src/VideoGeneration-AzureSora-01/Program.cs](../../samples/CoreSamples/VideoGeneration-AzureSora-01/Program.cs)
 
 - **Nouveau : Modèle de génération d'images Azure OpenAI (`gpt-image-1`)** : La leçon 3 propose maintenant des exemples de code pour utiliser le nouveau modèle de génération d'images Azure OpenAI, `gpt-image-1`. Apprenez comment générer des images depuis .NET en utilisant les dernières capacités d'Azure OpenAI.
   - Voir la documentation officielle : [Comment utiliser les modèles de génération d'images Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/how-to/dall-e?tabs=gpt-image-1) et le [guide de génération d'images openai-dotnet](https://github.com/openai/openai-dotnet?tab=readme-ov-file#how-to-generate-images) pour plus de détails.
-  - Trouvez l'exemple dans [Leçon 3 : Techniques IA génératives fondamentales .. /src/ImageGeneration-01.csproj](../../03-CoreGenerativeAITechniques/src/ImageGeneration-01/ImageGeneration-01.csproj).
+  - Trouvez l'exemple dans [Leçon 3 : Techniques IA génératives fondamentales .. /src/ImageGeneration-01.csproj](../../samples/CoreSamples/ImageGeneration-01/ImageGeneration-01.csproj).
 
 - **Nouveau scénario : Orchestration d'agents concurrents dans eShopLite** : Le [dépôt eShopLite](https://github.com/Azure-Samples/eShopLite/tree/main/scenarios/07-AgentsConcurrent) propose maintenant un scénario démontrant l'orchestration d'agents concurrents en utilisant Semantic Kernel. Ce scénario montre comment plusieurs agents peuvent travailler en parallèle pour analyser les requêtes utilisateur et fournir des insights précieux pour l'analyse future.
 
@@ -76,7 +75,7 @@ Vous apprendrez à intégrer l'IA générative dans des projets .NET, de la gén
 | #   | **Lien vers la Leçon** | **Description** |
 | --- | ----------------------- | --------------- |
 | 01  | [**Introduction aux Bases de l'IA Générative pour les Développeurs .NET**](./01-IntroToGenAI/readme.md) | <ul><li>Aperçu des modèles génératifs et de leurs applications en .NET</li></ul> |
-| 02  | [**Configurer un Environnement de Développement pour l'IA Générative avec .NET**](./02-SetupDevEnvironment/readme.md) | <ul><li>Utilisation de bibliothèques comme **Microsoft.Extensions.AI** et **Semantic Kernel**.</li><li>Configuration de fournisseurs comme GitHub Models, Azure AI Foundry, et développement local avec Ollama.</li></ul> |
+| 02  | [**Configurer un Environnement de Développement pour l'IA Générative avec .NET**](./02-SetupDevEnvironment/readme.md) | <ul><li>Utilisation de bibliothèques comme **Microsoft.Extensions.AI** et **Semantic Kernel**.</li><li>Configuration de fournisseurs comme GitHub Models, Microsoft Foundry, et développement local avec Ollama.</li></ul> |
 | 03  | [**Techniques Fondamentales d'IA Générative avec .NET**](./03-CoreGenerativeAITechniques/readme.md) | <ul><li>Génération de texte et flux conversationnels.</li><li> Capacités multimodales (vision et audio).</li><li>Agents</li></ul> |
 | 04  | [**Exemples Pratiques d'IA Générative avec .NET**](./04-PracticalSamples/readme.md) | <ul><li>Exemples complets démontrant l'IA générative dans des scénarios réels</li><li>Applications de recherche sémantique.</li><li>Applications avec agents multiples</li></ul> |
 | 05  | [**Utilisation Responsable de l'IA Générative dans les Applications .NET**](./05-ResponsibleGenAI/readme.md) | <ul><li>Considérations éthiques, réduction des biais, et implémentations sécurisées.</li></ul> |
@@ -142,7 +141,7 @@ Nous avons beaucoup d'autres contenus pour vous accompagner dans votre apprentis
 - [AI Agents for Beginners - A Course](https://aka.ms/ai-agents-beginners)
 - [Data Science for Beginners](https://aka.ms/datascience-beginners)
 - [ML for Beginners](https://aka.ms/ml-beginners)
-- [Cybersecurity for Beginners](https://github.com/microsoft/Security-101) 
+- [Cybersecurity for Beginners](https://github.com/microsoft/Security-101)
 - [Web Dev for Beginners](https://aka.ms/webdev-beginners)
 - [IoT for Beginners](https://aka.ms/iot-beginners)
 - [XR Development for Beginners](https://github.com/microsoft/xr-development-for-beginners)

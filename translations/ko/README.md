@@ -12,9 +12,8 @@
 [![GitHub forks](https://img.shields.io/github/forks/microsoft/Generative-AI-For-Beginners-Dotnet.svg?style=social&label=Fork)](https://github.com/microsoft/Generative-AI-For-Beginners-Dotnet/network/)
 [![GitHub stars](https://img.shields.io/github/stars/microsoft/Generative-AI-For-Beginners-Dotnet.svg?style=social&label=Star)](https://github.com/microsoft/Generative-AI-For-Beginners-Dotnet/stargazers/)
 
-
 [![Azure AI Community Discord](https://img.shields.io/discord/1113626258182504448?label=Azure%20AI%20Community%20Discord)](https://aka.ms/ai-discord/dotnet)
-[![Azure AI Foundry GitHub 토론](https://img.shields.io/badge/Discussions-Azure%20AI%20Foundry-blueviolet?logo=github&style=for-the-badge)](https://aka.ms/ai-discussions/dotnet)
+[![Microsoft Foundry GitHub 토론](https://img.shields.io/badge/Discussions-Microsoft%20Foundry-blueviolet?logo=github&style=for-the-badge)](https://aka.ms/ai-discussions/dotnet)
 
 ![초보자를 위한 Generative AI .NET 로고](../../translated_images/main-logo.5ac974278bc20b3520e631aaa6bf8799f2d219c5aec555da85555725546f25f8.ko.jpg)
 
@@ -24,11 +23,11 @@
 
 이 강좌는 **실습 위주**, **실용적**, 그리고 무엇보다도 **재미있게** 진행됩니다!
 
-이 저장소를 [즐겨찾기(🌟)](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars)해 두어 나중에 쉽게 찾으세요. 
+이 저장소를 [즐겨찾기(🌟)](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars)해 두어 나중에 쉽게 찾으세요.
 
 ➡️ [이 저장소를 포크(Fork)](https://github.com/microsoft/Generative-AI-for-beginners-dotnet/fork)하여 자신의 저장소에서 쉽게 확인할 수 있습니다.
 
-## ✨ 새로운 소식!
+## ✨ 새로운 소식
 
 우리는 최신 AI 도구, 모델 및 실용적인 샘플로 이 강좌를 지속적으로 개선하고 있습니다:
 
@@ -44,11 +43,11 @@
     - 작업 상태를 폴링하고 결과 비디오 파일을 자동으로 다운로드하기.
     - 생성된 비디오를 데스크톱에 저장하여 쉽게 보기.
   - 공식 문서 보기: [Azure OpenAI Sora 비디오 생성](https://learn.microsoft.com/azure/ai-services/openai/concepts/video-generation)
-  - 샘플 찾기: [레슨 3: 핵심 생성 AI 기술 /src/VideoGeneration-AzureSora-01/Program.cs](../../03-CoreGenerativeAITechniques/src/VideoGeneration-AzureSora-01/Program.cs)
+  - 샘플 찾기: [레슨 3: 핵심 생성 AI 기술 /src/VideoGeneration-AzureSora-01/Program.cs](../../samples/CoreSamples/VideoGeneration-AzureSora-01/Program.cs)
 
 - **새로운 기능: Azure OpenAI 이미지 생성 모델 (`gpt-image-1`)**: 레슨 3에서는 새로운 Azure OpenAI 이미지 생성 모델인 `gpt-image-1`을 사용하는 코드 샘플을 제공합니다. 최신 Azure OpenAI 기능을 사용하여 .NET에서 이미지를 생성하는 방법을 배워보세요.
   - 공식 문서 보기: [Azure OpenAI 이미지 생성 모델 사용 방법](https://learn.microsoft.com/azure/ai-services/openai/how-to/dall-e?tabs=gpt-image-1) 및 [openai-dotnet 이미지 생성 가이드](https://github.com/openai/openai-dotnet?tab=readme-ov-file#how-to-generate-images)에서 자세한 내용을 확인하세요.
-  - 샘플 찾기: [레슨 3: 핵심 생성 AI 기술 .. /src/ImageGeneration-01.csproj](../../03-CoreGenerativeAITechniques/src/ImageGeneration-01/ImageGeneration-01.csproj).
+  - 샘플 찾기: [레슨 3: 핵심 생성 AI 기술 .. /src/ImageGeneration-01.csproj](../../samples/CoreSamples/ImageGeneration-01/ImageGeneration-01.csproj).
 
 - **새로운 시나리오: eShopLite의 동시 에이전트 오케스트레이션**: [eShopLite 저장소](https://github.com/Azure-Samples/eShopLite/tree/main/scenarios/07-AgentsConcurrent)에서는 Semantic Kernel을 사용한 동시 에이전트 오케스트레이션을 보여주는 시나리오를 제공합니다. 이 시나리오는 여러 에이전트가 병렬로 작업하여 사용자 쿼리를 분석하고 향후 분석을 위한 귀중한 통찰력을 제공하는 방법을 보여줍니다.
 
@@ -76,7 +75,7 @@ Generative AI는 소프트웨어 개발의 패러다임을 변화시키고 있�
 | #   | **강의 링크** | **설명** |
 | --- | --- | --- |
 | 01  | [**.NET 개발자를 위한 Generative AI 기본 소개**](./01-IntroToGenAI/readme.md) | <ul><li>Generative 모델과 .NET에서의 활용 개요</li></ul> |
-| 02  | [**Generative AI와 함께 .NET 개발 환경 설정하기**](./02-SetupDevEnvironment/readme.md) | <ul><li>**Microsoft.Extensions.AI** 및 **Semantic Kernel**과 같은 라이브러리 사용.</li><li>GitHub Models, Azure AI Foundry, Ollama와 같은 환경 설정.</li></ul> |
+| 02  | [**Generative AI와 함께 .NET 개발 환경 설정하기**](./02-SetupDevEnvironment/readme.md) | <ul><li>**Microsoft.Extensions.AI** 및 **Semantic Kernel**과 같은 라이브러리 사용.</li><li>GitHub Models, Microsoft Foundry, Ollama와 같은 환경 설정.</li></ul> |
 | 03  | [**.NET에서 핵심 Generative AI 기술 배우기**](./03-CoreGenerativeAITechniques/readme.md) | <ul><li>텍스트 생성 및 대화 흐름.</li><li>멀티모달 기능(비전 및 오디오).</li><li>에이전트 활용</li></ul> |
 | 04  | [**실용적인 .NET Generative AI 샘플**](./04-PracticalSamples/readme.md) | <ul><li>현실 세계에서의 GenAI 활용 샘플</li><li>시맨틱 검색 애플리케이션.</li><li>다중 에이전트 애플리케이션</li></ul> |
 | 05  | [**.NET 애플리케이션에서 Generative AI의 책임 있는 사용**](./05-ResponsibleGenAI/readme.md) | <ul><li>윤리적 고려 사항, 편향 완화 및 안전한 구현.</li></ul> |

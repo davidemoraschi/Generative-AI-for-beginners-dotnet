@@ -38,9 +38,17 @@ Once your Codespace is fully loaded and configured, let's run a sample app to ve
 
 1. Switch to the proper directory by running the following command:
 
-    ```bash
-    cd 02-SetupDevEnvironment/src/BasicChat-03Ollama/
-    ```
+   If you're using Windows Command Prompt (CMD) or PowerShell:
+   ```bash
+   cd samples\CoreSamples\BasicChat-03Ollama
+   ```
+   
+   If you're using Linux, macOS, Git Bash, WSL, or the VS Code terminal:
+   ```bash
+   cd samples/CoreSamples/BasicChat-03Ollama
+   ```
+   
+   > **Note**: GitHub Codespaces runs a Linux environment, so always use forward slashes (`/`) in paths when working in Codespaces, regardless of your local operating system.
 
 1. Then run the application with the following command:
 
@@ -73,10 +81,13 @@ One of the cool things about Ollama is that it's easy to change models. The samp
 
     You can learn more about the [Phi3.5](https://ollama.com/library/phi3.5) and other available models in the [Ollama library](https://ollama.com/library/).
 
-1. Edit the initialization of the chat client in `Program.cs` to use the new model:
+1. Open `samples/CoreSamples/BasicChat-03Ollama/Program.cs` in your editor.
+
+    Update the chat client initialization to use the new model by changing line 6-7:
 
     ```csharp
-    IChatClient client = new OllamaChatClient(new Uri("http://localhost:11434/"), "phi3.5");
+    IChatClient client =
+        new OllamaChatClient(new Uri("http://localhost:11434/"), "phi3.5");
     ```
 
 1. Finally, run the app with the following command:

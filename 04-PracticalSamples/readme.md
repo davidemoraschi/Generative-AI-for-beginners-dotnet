@@ -11,9 +11,11 @@ See all the concepts you've learned in action in these real-world and practical 
 - Understand how Agents work in complex scenarios.
 
 ## Included samples
+
 - [Canonical Generative AI Samples](#canonical-generative-ai-samples)
   - [What you'll achieve](#what-youll-achieve)
   - [Included samples](#included-samples)
+  - [Aspire MCP Sample (Local)](#aspire-mcp-sample-local)
   - [eShopLite Demos](#eshoplite-demos)
     - [eShopLite with semantic search - In Memory](#eshoplite-with-semantic-search)
     - [eShopLite with semantic search - Azure AI Search](#eshoplite-with-semantic-search-using-azure-ai-search)
@@ -23,16 +25,48 @@ See all the concepts you've learned in action in these real-world and practical 
     - [Additional resources](#additional-resources)
     - [Next steps](#next-steps)
 
-
 [![overall explainer video](./images/LIM_GAN_09_thumb_w480.png)](https://aka.ms/genainnet/videos/lesson4-overview)
 
 _⬆️Click the image to watch the video⬆️_
+
+## Aspire MCP Sample (Local)
+
+Before diving into the eShopLite demos, we have a local sample that demonstrates the **Model Context Protocol (MCP)** integration with **.NET Aspire**. This sample shows how to build a chat application that leverages MCP servers for enhanced AI capabilities.
+
+> 🧑‍💻**Sample**: Check out the [Aspire MCP Sample code](../samples/PracticalSamples/) in this repository.
+
+The Aspire MCP Sample includes:
+
+- **McpSample.AppHost**: .NET Aspire orchestration for the application
+- **McpSample.Chat**: Blazor-based chat interface
+- **McpSample.AspNetCoreServer**: ASP.NET Core backend integrating with MCP servers
+- **McpSample.ServiceDefaults**: Shared service configurations
+
+To run this sample locally:
+
+If you're using Windows Command Prompt (CMD) or PowerShell:
+
+```bash
+cd samples\PracticalSamples\src
+dotnet run --project McpSample.AppHost\McpSample.AppHost.csproj
+```
+
+If you're using Linux, macOS, Git Bash, WSL, or the VS Code terminal:
+
+```bash
+cd samples/PracticalSamples/src
+dotnet run --project McpSample.AppHost/McpSample.AppHost.csproj
+```
+
+> **Note**: GitHub Codespaces runs a Linux environment, so always use forward slashes (`/`) in paths when working in Codespaces, regardless of your local operating system.
+
+This sample demonstrates how MCP can be used to connect AI models with external tools and services, enabling more powerful and contextual AI interactions.
 
 ## eShopLite Demos
 
 For our first demos, we'll explore the **eShopLite** projects. **eShopLite** is a simple e-commerce application for outdoor gear and camping enthusiasts that is augmented with Generative AI capabilities, such as search features optimization, customer support, and real-time audio analysis.
 
-These demos use [Azure OpenAI](https://azure.microsoft.com/products/ai-services/openai-service) and [Azure AI Foundry Models](https://ai.azure.com/) to do their inferences (or the generative AI portion) for the applications.
+These demos use [Azure OpenAI](https://azure.microsoft.com/products/ai-services/openai-service) and [Microsoft Foundry Models](https://ai.azure.com/) to do their inferences (or the generative AI portion) for the applications.
 
 In the first demo, we show how to use the Semantic Kernel to enhance the search capabilities, which can understand the context of the user's queries and provide accurate results.
 
@@ -235,7 +269,7 @@ Application Insights provides a comprehensive set of telemetry data, helping us 
 
 In the image, we can see the Application Insights dashboard, providing how the services are performing, for example, the calls for our Database, number of requests, and the response time.
 
-> 💡 **Pro Tip**: For more information on eShopLite with Semantic Search, look at the repository to learn more: https://aka.ms/eshoplite/repo
+> 💡 **Pro Tip**: For more information on eShopLite with Semantic Search, look at the repository to learn more: <https://aka.ms/eshoplite/repo>
 
 ### eShopLite with semantic search using Azure AI Search
 
@@ -449,6 +483,7 @@ await foreach (ChatMessageContent response in marketingAgent.InvokeAsync(
     });
 }
 ```
+
 Now, we initialize and configure the `Writer` and `Editor` agents. Look at the code:
 
 ```csharp

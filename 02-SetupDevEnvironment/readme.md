@@ -37,13 +37,13 @@ Here's a quick rundown of the services:
 
 The Ollama Codespace will provision all the necessary models that you need. However, if you are working in local mode, once you have installed Ollama, you need to pull the models for the lessons you want to run.
 
-- For lesson "**02 - Setting Up for .NET Development with Generative AI**" and project [MEAIFunctionsOllama](https://github.com/microsoft/Generative-AI-for-beginners-dotnet/tree/main/02-SetupDevEnvironment/src/BasicChat-03Ollama) you need to pull a model like [phi4-mini](https://ollama.com/library/phi4-mini) or [llama3.2](https://ollama.com/library/llama3.2)  by entering in terminal
+- For lesson "**02 - Setting Up for .NET Development with Generative AI**" and project [BasicChat-03Ollama](https://github.com/microsoft/Generative-AI-for-beginners-dotnet/tree/main/samples/CoreSamples/BasicChat-03Ollama) you need to pull a model like [phi4-mini](https://ollama.com/library/phi4-mini) or [llama3.2](https://ollama.com/library/llama3.2)  by entering in terminal
 
 ```bash
 ollama pull phi4-mini
 ```
 
-- For lesson "**03 - Core Generative AI Techniques with .NET**", when running the ollama projects like [RAGSimple-10SKOllama](https://github.com/microsoft/Generative-AI-for-beginners-dotnet/tree/main/03-CoreGenerativeAITechniques/src/RAGSimple-10SKOllama),  you need to pull the models [all-minilm](https://ollama.com/library/all-minilm) and [phi4-mini](https://ollama.com/library/phi4-mini) by entering in terminal:
+- For lesson "**03 - Core Generative AI Techniques with .NET**", when running the ollama projects like [RAGSimple-10SKOllama](https://github.com/microsoft/Generative-AI-for-beginners-dotnet/tree/main/samples/CoreSamples/RAGSimple-10SKOllama),  you need to pull the models [all-minilm](https://ollama.com/library/all-minilm) and [phi4-mini](https://ollama.com/library/phi4-mini) by entering in terminal:
 
 ```bash
 ollama pull phi4-mini
@@ -88,7 +88,7 @@ Before we do anything else, we need to configure essential security credentials 
 
     - Under "Note", provide a descriptive name (e.g., `GenAI-DotNet-Course-Token`)
     - Set an expiration date (recommended: 7 days for security best practices)
-    - There is no need adding any permissions to this token.
+    - **Important**: You must select the **`models:read`** permission scope for this token to work with GitHub Models.
 
 > 💡 **Security Tip**: Always use the minimum required scope and shortest practical expiration time for your access tokens. This follows the principle of least privilege and helps maintain your account's tokens safe.
 
@@ -124,14 +124,17 @@ Once your Codespace is fully loaded and configured, let's run a sample app to ve
 1. Open the terminal. You can open a terminal window by typing **Ctrl+\`** (backtick) on Windows or **Cmd+`** on macOS.
 
 1. Switch to the proper directory by running the following command:
+
    If you're using Windows Command Prompt (CMD) or PowerShell:
     ```bash
-    cd 02-SetupDevEnvironment\src\BasicChat-01MEAI
+    cd samples\CoreSamples\BasicChat-01MEAI
     ```
     or If you're using Linux, macOS, Git Bash, WSL, or the VS Code terminal
    ```bash
-   cd 02-SetupDevEnvironment/src/BasicChat-01MEAI
+   cd samples/CoreSamples/BasicChat-01MEAI
    ```
+
+   > **Note**: GitHub Codespaces runs a Linux environment, so always use forward slashes (`/`) in paths, regardless of your local operating system.
 
 1. Then run the application with the following command:
 
@@ -148,6 +151,78 @@ Once your Codespace is fully loaded and configured, let's run a sample app to ve
     ```
 
 > 🙋 **Need help?**: Something not working? [Open an issue](https://github.com/microsoft/Generative-AI-for-beginners-dotnet/issues/new?template=Blank+issue) and we'll help you out.
+
+## Troubleshooting
+
+### Error: Authentication Failed or 401 (Unauthorized)
+
+If you encounter an error like:
+```
+Azure.RequestFailedException: Status: 401 (Unauthorized)
+ErrorCode: (empty)
+Content: (empty)
+```
+
+Or see errors in the stack trace mentioning:
+```
+at Azure.AI.Inference.ChatCompletionsClient.CompleteAsync(...)
+at Microsoft.Extensions.AI.AzureAIInferenceChatClient.GetResponseAsync(...)
+```
+
+This typically means your GitHub Personal Access Token is missing the required permissions:
+
+1. **Missing `models:read` scope**: As of May 15, 2025, GitHub Models requires the `models:read` permission scope for Personal Access Tokens. If you created your token before this date or didn't select this scope, you'll get authentication errors.
+
+**Quick Fix**:
+1. Go to [GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)](https://github.com/settings/tokens)
+2. Find your existing token (e.g., `GenAI-DotNet-Course-Token`)
+3. Click **Edit** or **Delete** and create a new one
+4. When creating the new token, make sure to check the **`models:read`** scope checkbox
+5. Copy the new token and update your `GITHUB_TOKEN` environment variable
+
+To update the token in your Codespace:
+- Delete your existing Codespace
+- Update the repository secrets if you're using Codespaces secrets
+- Create a new Codespace with the updated token
+
+### Error: Unknown model or 404 (Not Found)
+
+If you encounter an error like:
+```
+Azure.RequestFailedException: Unknown model: /Phi-3.5-MoE-instruct
+Status: 404 (Not Found)
+ErrorCode: unknown_model
+```
+
+This typically means one of the following:
+
+1. **Your code references a deprecated model**: Some models have been deprecated or removed from GitHub Models. For example, `Phi-3.5-MoE-instruct` was deprecated in September 2025. Make sure your code uses the current supported model.
+
+2. **Your repository fork is outdated**: If you forked this repository before recent updates, your code might reference old model names. To fix this:
+   - Pull the latest changes from the upstream repository
+   - Ensure your `Program.cs` file in `samples/CoreSamples/BasicChat-01MEAI` uses `Phi-4-mini-instruct` (not older model names)
+
+3. **Model name typo**: Double-check that the model name in your code exactly matches the available models in [GitHub Models](https://github.com/marketplace?type=models).
+
+**Quick Fix**: 
+- Open `/samples/CoreSamples/BasicChat-01MEAI/Program.cs`
+- Verify the model name is `Phi-4-mini-instruct`:
+  ```csharp
+  .AsIChatClient("Phi-4-mini-instruct");
+  ```
+
+For the latest list of available models, visit the [GitHub Models Marketplace](https://github.com/marketplace?type=models).
+
+### Model Migration Guide
+
+If you're updating old code that used deprecated models, here's a quick reference:
+
+| Deprecated Model (GitHub Models) | Current Replacement |
+|----------------------------------|---------------------|
+| Phi-3.5-MoE-instruct | Phi-4-mini-instruct |
+| Phi-3.5-mini-instruct | Phi-4-mini-instruct |
+
+> **Note**: This migration guide applies to **GitHub Models** only. If you're using local model runners like Ollama or Foundry Local, those platforms may still support Phi-3.5 models. Check your specific platform's documentation for available models.
 
 ## Summary
 

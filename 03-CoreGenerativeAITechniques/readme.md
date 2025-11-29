@@ -31,6 +31,28 @@ For this lesson, we will subdivide the content into the following sections:
 
 ---
 
+## Sample Code Organization
+
+All code samples for this lesson are located in the **[`samples/CoreSamples/`](../samples/CoreSamples/)** directory. This includes:
+
+- **Chat & Completions**: `BasicChat-01MEAI`, `BasicChat-02SK`, `BasicChat-03Ollama`, etc.
+- **Function Calling**: `MEAIFunctions`, `MEAIFunctionsAzureOpenAI`, `MEAIFunctionsOllama`
+- **RAG Examples**: `RAGSimple-01SK`, `RAGSimple-02MEAIVectorsMemory`, `RAGSimple-03MEAIVectorsAISearch`, etc.
+- **Vision & Audio**: `Vision-01MEAI-GitHubModels`, `Audio-01-SpeechMic`, `Audio-02-RealTimeAudio`
+- **Agents**: `AgentLabs-01-Simple`, `AgentLabs-02-Functions`, `AgentLabs-03-OpenAPIs`
+- **Image Generation**: `ImageGeneration-01`
+- **Video Generation**: `VideoGeneration-AzureSora-01`, `VideoGeneration-AzureSoraSDK-02`
+- **Local Model Runners**: `AIToolkit-01-SK-Chat`, `DockerModels-01-SK-Chat`, `AIFoundryLocal-01-MEAI-Chat`
+
+Each lesson document links directly to the relevant samples in this centralized location.
+
 ## Want to know more?
 
 See the [Project Documentation](./docs/projects.md) for detailed breakdowns, dependencies, and demo instructions for every project in this lesson.
+
+## Troubleshooting
+
+Having issues with chat APIs? Check out our [Common Chat API Issues and Solutions](./docs/troubleshooting-chat-api.md) guide for help with:
+- Understanding chat message lists and conversation history
+- Fixing "response.Messages does not exist" errors
+- Proper usage of GetResponseAsync with conversation context

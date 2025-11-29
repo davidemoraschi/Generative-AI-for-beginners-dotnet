@@ -35,16 +35,31 @@ You may have heard of vector databases. These are databases that store data in a
 
 We'll use the Microsoft.Extension.AI along with the [Microsoft.Extensions.VectorData](https://www.nuget.org/packages/Microsoft.Extensions.VectorData.Abstractions/) and [Microsoft.SemanticKernel.Connectors.InMemory](https://www.nuget.org/packages/Microsoft.SemanticKernel.Connectors.InMemory) libraries to implement RAG below.
 
-> 🧑‍💻**Sample code:** You can follow along with the [sample code here](./src/RAGSimple-02MEAIVectorsMemory/).
->
-> You can also see how to implement a RAG app [using Semantic Kernel by itself in our sample source code here](./src/RAGSimple-01SK/).
+For the GitHub Models embedding example below, you'll also need:
+- [Microsoft.Extensions.AI.AzureAIInference](https://www.nuget.org/packages/Microsoft.Extensions.AI.AzureAIInference)
+- [Azure.AI.Inference](https://www.nuget.org/packages/Azure.AI.Inference)
+
+And include these using statements in your code:
+```csharp
+using Azure;
+using Azure.AI.Inference;
+using Microsoft.Extensions.AI;
+using Microsoft.SemanticKernel.Connectors.InMemory;
+```
+
+> 🧑‍💻**Sample code:** You can follow along with the [sample code here](../samples/CoreSamples/RAGSimple-02MEAIVectorsMemory/) which uses **GitHub Models**.
 >
 > We have additional RAG examples for different vector stores and models:
 >
-> - [RAGSimple-03MEAIVectorsAISearch](./src/RAGSimple-03MEAIVectorsAISearch/) - Using Azure AI Search as a vector store
-> - [RAGSimple-04MEAIVectorsQdrant](./src/RAGSimple-04MEAIVectorsQdrant/) - Using Qdrant as a vector store
-> - [RAGSimple-10SKOllama](./src/RAGSimple-10SKOllama/) - Using Semantic Kernel with Ollama
-> - [RAGSimple-15Ollama-DeepSeekR1](./src/RAGSimple-15Ollama-DeepSeekR1/) - Using Ollama with DeepSeek-R1 model
+> **Using GitHub Models or Azure OpenAI:**
+> - [RAGSimple-02MEAIVectorsMemory](../samples/CoreSamples/RAGSimple-02MEAIVectorsMemory/) - Using GitHub Models with in-memory vector store (matches tutorial code)
+> - [RAGSimple-03MEAIVectorsAISearch](../samples/CoreSamples/RAGSimple-03MEAIVectorsAISearch/) - Using Azure AI Search as a vector store
+> - [RAGSimple-04MEAIVectorsQdrant](../samples/CoreSamples/RAGSimple-04MEAIVectorsQdrant/) - Using Qdrant as a vector store
+>
+> **Using Ollama (local models):**
+> - [RAGSimple-01SK](../samples/CoreSamples/RAGSimple-01SK/) - Using Semantic Kernel with Ollama
+> - [RAGSimple-10SKOllama](../samples/CoreSamples/RAGSimple-10SKOllama/) - Using Semantic Kernel with Ollama and enhanced console output
+> - [RAGSimple-15Ollama-DeepSeekR1](../samples/CoreSamples/RAGSimple-15Ollama-DeepSeekR1/) - Using Ollama with DeepSeek-R1 model
 
 ### Populating the knowledge store
 
@@ -84,11 +99,13 @@ We'll use the Microsoft.Extension.AI along with the [Microsoft.Extensions.Vector
 3. Our next task then is to convert our knowledge store (the `movieData` object) into embeddings and then store them into the in-memory vector store. When we create the embeddings we'll use a different model - an embeddings model instead of a language model.
 
     ```csharp
-    var endpoint = new Uri("https://models.github.ai/inference");
-    var modelId = "text-embedding-3-small";
+    var githubToken = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
     // get embeddings generator and generate embeddings for movies
     IEmbeddingGenerator<string, Embedding<float>> generator =
-        new OllamaEmbeddingGenerator(new Uri("http://localhost:11434/"), "all-minilm");
+        new EmbeddingsClient(
+            endpoint: new Uri("https://models.github.ai/inference"),
+            new AzureKeyCredential(githubToken))
+        .AsIEmbeddingGenerator("text-embedding-3-small");
     foreach (var movie in movieData)
     {
         movie.Vector = await generator.GenerateVectorAsync(movie.Description);
@@ -96,7 +113,11 @@ We'll use the Microsoft.Extension.AI along with the [Microsoft.Extensions.Vector
     }
     ```
 
-    Our generator object is of an `IEmbeddingGenerator<string, Embedding<float>>` type. This means it is expecting inputs of `string` and outputs of `Embedding<float>`. We're again using GitHub Models and that means the **Microsoft.Extensions.AI.AzureAIInference** package. But you could use **Ollama** or **Azure OpenAI** just as easily.
+    Our generator object is of an `IEmbeddingGenerator<string, Embedding<float>>` type. This means it is expecting inputs of `string` and outputs of `Embedding<float>`. We're using GitHub Models and that means the **Microsoft.Extensions.AI.AzureAIInference** package along with **Azure.AI.Inference**. But you could use **Ollama** or **Azure OpenAI** just as easily.
+    
+    > 💡**Alternative providers:** 
+    > - For **Ollama**: `new OllamaEmbeddingGenerator(new Uri("http://localhost:11434/"), "all-minilm")`
+    > - For **Azure OpenAI**: Use `AzureOpenAIClient` with `.AsIEmbeddingGenerator()` extension
 
 > 🗒️**Note:** Generally you'll only be creating embeddings for your knowledge store once and then storing them. This won't be done every single time you run the application. But since we're using an in-memory store, we need to because the data gets wiped every time the application restarts.
 

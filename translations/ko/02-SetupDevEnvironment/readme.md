@@ -71,7 +71,7 @@ GitHub Models, Azure OpenAI, Ollama를 사용하여 개발 환경을 설정하�
 
     - "Note" 필드에 설명을 추가 (예: `GenAI-DotNet-Course-Token`)
     - 만료 날짜 설정 (권장: 보안 모범 사례를 위해 7일)
-    - 이 토큰에 별도의 권한 추가는 필요하지 않습니다.
+    - **중요**: 이 토큰이 GitHub Models와 작동하려면 **`models:read`** 권한 범위를 선택해야 합니다.
 
 > 💡 **보안 팁**: 액세스 토큰에는 최소한의 범위와 가장 짧은 만료 시간을 설정하세요. 이는 최소 권한 원칙을 따르며 계정의 토큰을 안전하게 유지하는 데 도움이 됩니다.
 
@@ -109,8 +109,10 @@ Codespace가 완전히 로드되고 구성되었으면, 샘플 앱을 실행하�
 1. 다음 명령어를 실행하여 적절한 디렉토리로 이동합니다:
 
     ```bash
-    cd 02-SetupDevEnvironment\src\BasicChat-01MEAI
+    cd 02-SetupDevEnvironment/src/BasicChat-01MEAI
     ```
+
+    > **참고**: GitHub Codespaces는 Linux 환경에서 실행되므로, 로컬 운영 체제와 관계없이 경로에는 항상 슬래시(`/`)를 사용해야 합니다.
 
 1. 그런 다음, 다음 명령어로 애플리케이션을 실행합니다:
 

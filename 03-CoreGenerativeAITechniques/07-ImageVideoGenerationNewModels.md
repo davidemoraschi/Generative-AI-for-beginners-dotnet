@@ -12,7 +12,7 @@ Image and video generation AI represents the next frontier in creative applicati
 
 The `gpt-image-1` model represents a significant advancement in image generation capabilities. Let's explore how to use it in a .NET application:
 
-> 🧑‍💻**Sample code**: [Here is a working example of this application](./src/ImageGeneration-01/) you can follow along with.
+> 🧑‍💻**Sample code**: [Here is a working example of this application](../samples/CoreSamples/ImageGeneration-01/) you can follow along with.
 
 #### How to run the sample code
 
@@ -22,9 +22,19 @@ To run the sample code, you'll need to:
 2. Ensure you have configured your Azure OpenAI API key and settings as described in the [Azure OpenAI setup guide](../02-SetupDevEnvironment/getting-started-azure-openai.md)
 3. Open a terminal in your codespace (Ctrl+` or Cmd+`)
 4. Navigate to the sample code directory:
+   
+   If you're using Windows Command Prompt (CMD) or PowerShell:
    ```bash
-   cd 03-CoreGenerativeAITechniques/src/ImageGeneration-01
+   cd samples\CoreSamples\ImageGeneration-01
    ```
+   
+   If you're using Linux, macOS, Git Bash, WSL, or the VS Code terminal:
+   ```bash
+   cd samples/CoreSamples/ImageGeneration-01
+   ```
+   
+   > **Note**: GitHub Codespaces runs a Linux environment, so always use forward slashes (`/`) in paths when working in Codespaces, regardless of your local operating system.
+
 5. Run the application:
    ```bash
    dotnet run
@@ -100,7 +110,7 @@ This code:
 
 The `sora` model enables video generation from text prompts, bringing motion and temporal dynamics to your AI-generated content. Let's explore how to use it:
 
-> 🧑‍💻**Sample code**: [Here are working examples for video generation](./src/VideoGeneration-AzureSora-01/) and [using the AzureSoraSDK](./src/VideoGeneration-AzureSoraSDK-02/) you can follow along with.
+> 🧑‍💻**Sample code**: [Here are working examples for video generation](../samples/CoreSamples/VideoGeneration-AzureSora-01/) and [using the AzureSoraSDK](../samples/CoreSamples/VideoGeneration-AzureSoraSDK-02/) you can follow along with.
 
 #### Using REST API Approach
 
