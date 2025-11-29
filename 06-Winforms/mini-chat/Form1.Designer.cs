@@ -68,7 +68,7 @@
             // lst_models
             // 
             lst_models.FormattingEnabled = true;
-            lst_models.Items.AddRange(new object[] { "Phi-3.5-MoE-instruct", "Phi-4", "Phi-4-mini-instruct", "sonar", "sonar-pro", "claude-3-7-sonnet-20250219", "gemini-2.5-pro", "gpt-4.1-mini", "gpt-4.1", "gpt-5", "gpt-4o-mini", "gpt-4o", "Mistral-large", "Meta-Llama-3.1-70B-Instruct", "DeepSeek-V3-0324", "DeepSeek-R1", "DeepSeek-R1-0528", "Codestral-2501", "ciccio" });
+            lst_models.Items.AddRange(new object[] { "Phi-3.5-MoE-instruct", "Phi-4", "Phi-4-mini-instruct", "sonar", "sonar-pro", "claude-3-7-sonnet-20250219", "gemini-2.5-pro", "gpt-5.1", "gpt-4.1-mini", "gpt-4.1", "gpt-5", "gpt-4o-mini", "gpt-4o", "Mistral-large", "Meta-Llama-3.1-70B-Instruct", "DeepSeek-V3-0324", "DeepSeek-R1", "DeepSeek-R1-0528", "Codestral-2501", "ciccio" });
             lst_models.Location = new Point(12, 246);
             lst_models.Name = "lst_models";
             lst_models.Size = new Size(343, 124);
